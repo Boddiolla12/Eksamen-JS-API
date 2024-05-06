@@ -4,6 +4,7 @@ const navItems = [
   { text: "Home", href: "index.html" },
   { text: "Details", href: "details.html" },
   { text: "Favorites", href: "favorites.html" },
+  { text: "Account", href: "account.html" },
 ];
 
 // Creating nav elements
@@ -18,7 +19,11 @@ navItems.forEach((item) => {
   link.setAttribute("href", item.href);
   listItem.appendChild(link);
 
-  item.href === activePage && listItem.classList.add("active");
+  // Check if the current item's href matches the activePage
+  if (item.href === activePage) {
+    // If it matches, add the "active" class to the listItem
+    listItem.classList.add("active");
+  }
 
   navList.appendChild(listItem);
 });
