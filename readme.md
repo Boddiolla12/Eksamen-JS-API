@@ -5,3 +5,9 @@
 - Oskar Gjelstad Rebård
 
 ---
+
+# Image origins
+
+- https://www.myfreetextures.com/
+
+---
