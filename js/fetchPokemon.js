@@ -30,6 +30,9 @@ const fetchPokemon = async () => {
 
   // Log processed data
   console.log(pokemon);
+  displayPokemon(pokemon);
 };
 
-fetchPokemon();
+document.addEventListener("DOMContentLoaded", () => {
+  fetchPokemon();
+});
