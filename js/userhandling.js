@@ -1,3 +1,6 @@
+//CRUD URL
+const crudUrl = "https://crudcrud.com/api/ca99ae2b001546eb8b76be0a318180df/login";
+
 //function for manipulating elements elements displayvalue
 const toggleElementDisplay = (elementIds, displayValue) => {
   elementIds.forEach((elementId) => {
@@ -5,33 +8,73 @@ const toggleElementDisplay = (elementIds, displayValue) => {
   });
 };
 
+const checkUserCredentials = async (username, password) => {
+  const url = `${crudUrl}?username=${username}&password=${password}`;
+
+  try {
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to check user credentials");
+    }
+
+    const users = await response.json();
+    return users.length > 0 && users[0].username === username && users[0].password === password;
+  } catch (error) {
+    console.error("Error:", error);
+    return false;
+  }
+};
+
 //Functionality for logging in user
-const loginUser = (username, password) => {
-  const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
-  const user = existingUsers.find(
-    (users) => users.username === username && users.password === password
-  );
+const loginUser = async (username, password) => {
+  try {
+    const response = await fetch(crudUrl, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-  //Functionality to hide loginform elements after succesful login
-  const elementsToHide = [
-    "username",
-    "usernameLabel",
-    "password",
-    "passwordLabel",
-    "registerLabel",
-    "registerBtn",
-    "loginBtn",
-  ];
+    if (!response.ok) {
+      throw new Error("Login failed");
+    }
 
-  if (user) {
-    alert("Login successful.");
-    //hide register and login button, then  display logout button
-    document.getElementById("accountForm").reset();
-    document.getElementById("username").focus();
-    toggleElementDisplay(elementsToHide, "none");
-    document.getElementById("logoutBtn").style.display = "block";
-  } else {
+    const user = await response.json();
+
+    //check if user exists
+    const acceptCredentials = await checkUserCredentials(username, password);
+
+    if (acceptCredentials) {
+      alert("Login successful.");
+
+      //Functionality to hide loginform elements after succesful login
+      const elementsToHide = [
+        "username",
+        "usernameLabel",
+        "password",
+        "passwordLabel",
+        "registerLabel",
+        "registerBtn",
+        "loginBtn",
+      ];
+
+      //hide register and login button, then  display logout button
+      document.getElementById("accountForm").reset();
+      document.getElementById("username").focus();
+      toggleElementDisplay(elementsToHide, "none");
+      document.getElementById("logoutBtn").style.display = "block";
+    } else {
+      alert("Invalid username or password");
+    }
+  } catch (error) {
     alert("Invalid username or password");
+    console.error("Error", error);
   }
 };
 
@@ -44,21 +87,61 @@ document.getElementById("loginBtn").addEventListener("click", () => {
 
 //
 
+//checks if username already exists
+const checkUserNameExists = async (username) => {
+  const url = `${crudUrl}?username=${username}`;
+
+  try {
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to check existence of username");
+    }
+
+    const users = await response.json();
+    return users.length > 0;
+  } catch (error) {
+    console.log("Error:", error);
+    return true;
+  }
+};
+
 // function to register new user
-const registerUser = (username, password) => {
+const registerUser = async (username, password) => {
   //check if username already exists
-  const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
-  // checks if a single element in the array exists that matches input value
-  if (existingUsers.some((user) => user.username === username)) {
+  const usernameExists = await checkUserNameExists(username);
+
+  if (usernameExists) {
     alert("Username already exists. Please choose another one.");
     return;
   }
 
-  //add new user to localstorage
-  const newUser = { username, password };
-  existingUsers.push(newUser);
-  localStorage.setItem("users", JSON.stringify(existingUsers));
-  alert("Registration succesful.");
+  //If username doesnt exists, proceed with registration
+  const userData = { username, password };
+
+  try {
+    const response = await fetch(crudUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
+
+    if (!response.ok) {
+      throw new Error("Registration failed");
+    }
+
+    alert("Registration successful.");
+  } catch (error) {
+    alert("Error registering user");
+    console.error("Error:", error);
+  }
 };
 
 //eventlistener for registration form
