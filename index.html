@@ -6,6 +6,7 @@
     <title>Index</title>
     <link rel="stylesheet" href="/css/index.css" />
     <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/spinningLoad.css" />
   </head>
   <body>
     <header>
@@ -13,9 +14,13 @@
         <ul id="navLi"></ul>
       </nav>
     </header>
-    <main><ul id="pokemon-container"></ul></main>
+    <main>
+      <div class="spinner"></div>
+      <ul id="pokemon-container"></ul>
+    </main>
     <footer></footer>
     <script src="/js/navigation.js"></script>
+    <script src="/js/spinningLoad.js"></script>
     <script src="/js/fetchPokemon.js"></script>
     <script src="/js/displayPokemon.js"></script>
   </body>
