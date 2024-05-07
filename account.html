@@ -6,6 +6,7 @@
     <title>Index</title>
     <link rel="stylesheet" href="/css/global.css" />
     <link rel="stylesheet" href="/css/account.css" />
+    <link rel="stylesheet" href="/css/spinningLoad.css" />
   </head>
   <body>
     <header>
@@ -14,22 +15,29 @@
       </nav>
     </header>
     <main>
+      <div class="spinner"></div>
       <h1>Login</h1>
-      <form id="accountForm">
-        <div class="formElementContainer">
-          <label for="username" id="usernameLabel">Username:</label>
-          <input type="text" id="username" name="username" required /><br />
-          <label for="password" id="passwordLabel">Password:</label>
-          <input type="password" id="password" name="password" required /><br />
-          <button type="button" id="loginBtn">Login</button>
-          <button type="button" id="logoutBtn" style="display: none">Logout</button>
-          <label id="registerLabel">If you dont have an account:</label>
-          <button type="submit" id="registerBtn">Register</button>
-        </div>
-      </form>
+      <button type="button" id="logoutBtn" style="display: none">Logout</button>
+      <div class="formWrapper" id="formWrapper" style="display: none">
+        <form id="accountForm">
+          <div class="formElementContainer">
+            <label for="username" id="usernameLabel">Username:</label>
+            <input type="text" id="username" name="username" required /><br />
+            <label for="password" id="passwordLabel">Password:</label>
+            <input type="password" id="password" name="password" required /><br />
+            <button type="button" id="loginBtn">Login</button>
+            <label id="registerLabel">If you dont have an account:</label>
+            <button type="submit" id="registerBtn">Register</button>
+          </div>
+        </form>
+      </div>
     </main>
     <footer></footer>
     <script src="/js/navigation.js"></script>
+    <script src="/js/registerUser.js"></script>
+    <script src="/js/login.js"></script>
+    <script src="/js/logout.js"></script>
     <script src="/js/userhandling.js"></script>
+    <script src="/js/spinningLoad.js"></script>
   </body>
 </html>
