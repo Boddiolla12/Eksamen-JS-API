@@ -7,7 +7,7 @@ const displayPokemon = (pokemonData) => {
 
   // Create HTML elements for each pokemon and append to container
   pokemonData.forEach((pokemon) => {
-    const pokemonElement = document.createElement("div");
+    const pokemonElement = document.createElement("li");
     pokemonElement.classList.add("pokemon");
 
     pokemonElement.innerHTML = `
