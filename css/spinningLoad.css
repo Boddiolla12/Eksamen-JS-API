@@ -1,5 +1,5 @@
 .spinner {
-  position: relative;
+  position: absolute;
   top: 10rem;
   border: 10px solid rgba(212, 24, 24, 0.614);
   border-left-color: #8f8f8f;
