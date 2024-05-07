@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Index</title>
     <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/account.css" />
   </head>
   <body>
     <header>
@@ -15,14 +16,16 @@
     <main>
       <h1>Login</h1>
       <form id="accountForm">
-        <label for="username" id="usernameLabel">Username:</label>
-        <input type="text" id="username" name="username" required /><br />
-        <label for="password" id="passwordLabel">Password:</label>
-        <input type="password" id="password" name="password" required /><br />
-        <button type="button" id="loginBtn">Login</button>
-        <button type="button" id="logoutBtn" style="display: none">Logout</button>
-        <label id="registerLabel">If you dont have an account:</label>
-        <button type="submit" id="registerBtn">Register</button>
+        <div class="formElementContainer">
+          <label for="username" id="usernameLabel">Username:</label>
+          <input type="text" id="username" name="username" required /><br />
+          <label for="password" id="passwordLabel">Password:</label>
+          <input type="password" id="password" name="password" required /><br />
+          <button type="button" id="loginBtn">Login</button>
+          <button type="button" id="logoutBtn" style="display: none">Logout</button>
+          <label id="registerLabel">If you dont have an account:</label>
+          <button type="submit" id="registerBtn">Register</button>
+        </div>
       </form>
     </main>
     <footer></footer>
