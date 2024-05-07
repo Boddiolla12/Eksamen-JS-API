@@ -11,9 +11,9 @@ const fetchPokemon = async () => {
       const baseUrl = `https://pokeapi.co/api/v2/pokemon/${i}`;
       const requestOptions = {
         method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        /*headers: {
+          "Content-Type": "application/json", // Problemer med treg load ved bruk av headers
+        }, */
       };
 
       try {
