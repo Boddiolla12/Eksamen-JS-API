@@ -1,5 +1,5 @@
 //CRUD URL
-const crudUrl = "https://crudcrud.com/api/ca99ae2b001546eb8b76be0a318180df/login";
+const url = "https://crudcrud.com/api/8d7b11a946f2404c9f989382b0f7da56/login";
 
 //function for manipulating elements elements displayvalue
 const toggleElementDisplay = (elementIds, displayValue) => {
@@ -8,9 +8,7 @@ const toggleElementDisplay = (elementIds, displayValue) => {
   });
 };
 
-const checkUserCredentials = async (username, password) => {
-  const url = `${crudUrl}?username=${username}&password=${password}`;
-
+const checkUserName_passwordExists = async (username, password) => {
   try {
     const response = await fetch(url, {
       method: "GET",
@@ -18,15 +16,23 @@ const checkUserCredentials = async (username, password) => {
         "Content-Type": "application/json",
       },
     });
-
+    //check if response is succesful (status code 200)
     if (!response.ok) {
       throw new Error("Failed to check user credentials");
     }
-
+    //parse JSON data from the response
     const users = await response.json();
-    return users.length > 0 && users[0].username === username && users[0].password === password;
+
+    // check if any user matches the provided username and password
+    const userExists = users.some(
+      (user) => user.username === username && user.password === password
+    );
+
+    return userExists;
   } catch (error) {
     console.error("Error:", error);
+
+    // If an error occurs during the process, return false
     return false;
   }
 };
@@ -34,7 +40,7 @@ const checkUserCredentials = async (username, password) => {
 //Functionality for logging in user
 const loginUser = async (username, password) => {
   try {
-    const response = await fetch(crudUrl, {
+    const response = await fetch(url, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -45,12 +51,14 @@ const loginUser = async (username, password) => {
       throw new Error("Login failed");
     }
 
-    const user = await response.json();
+    const users = await response.json();
 
     //check if user exists
-    const acceptCredentials = await checkUserCredentials(username, password);
+    const userExists = users.some(
+      (user) => user.username === username && username && user.password === password
+    );
 
-    if (acceptCredentials) {
+    if (userExists) {
       alert("Login successful.");
 
       //Functionality to hide loginform elements after succesful login
@@ -87,10 +95,8 @@ document.getElementById("loginBtn").addEventListener("click", () => {
 
 //
 
-//checks if username already exists
+// checks if username exists, to be used by registerUser function
 const checkUserNameExists = async (username) => {
-  const url = `${crudUrl}?username=${username}`;
-
   try {
     const response = await fetch(url, {
       method: "GET",
@@ -98,16 +104,19 @@ const checkUserNameExists = async (username) => {
         "Content-Type": "application/json",
       },
     });
-
     if (!response.ok) {
-      throw new Error("Failed to check existence of username");
+      throw new Error("Failed to check username existence");
     }
 
     const users = await response.json();
-    return users.length > 0;
+
+    //check if any users matches the provided username
+    const usernameExists = users.some((user) => user.username === username);
+
+    return usernameExists;
   } catch (error) {
-    console.log("Error:", error);
-    return true;
+    console.error("Error:", error);
+    return false;
   }
 };
 
@@ -125,7 +134,7 @@ const registerUser = async (username, password) => {
   const userData = { username, password };
 
   try {
-    const response = await fetch(crudUrl, {
+    const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
