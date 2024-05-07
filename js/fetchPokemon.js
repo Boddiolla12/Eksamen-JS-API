@@ -9,9 +9,15 @@ const fetchPokemon = async () => {
     // Create promises for fetching data for each pokemon
     for (let i = 1; i < 152; i++) {
       const baseUrl = `https://pokeapi.co/api/v2/pokemon/${i}`;
+      const requestOptions = {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
 
       try {
-        const response = await fetch(baseUrl);
+        const response = await fetch(baseUrl, requestOptions);
         if (!response.ok) {
           throw new Error(`Failed to fetch pokemon ${i}`);
         }
