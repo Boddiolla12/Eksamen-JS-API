@@ -2,7 +2,6 @@ const activePage = window.location.href.split("/").pop();
 
 const navItems = [
   { text: "Home", href: "index.html" },
-  { text: "Details", href: "details.html" },
   { text: "Favorites", href: "favorites.html" },
   { text: "Account", href: "account.html" },
 ];
