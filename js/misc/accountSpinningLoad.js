@@ -1,15 +1,3 @@
-// function to show loading spinner
-const showSpinner = () => {
-  const spinner = document.querySelector(".spinner");
-  spinner.style.display = "block";
-};
-
-// Function to hide loading spinner
-const hideSpinner = () => {
-  const spinner = document.querySelector(".spinner");
-  spinner.style.display = "none";
-};
-
 //Check if the user is already logged in on pageload
 window.addEventListener("load", () => {
   if (checkLoggedIn()) {

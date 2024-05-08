@@ -16,6 +16,7 @@ const displayPokemon = (pokemonData) => {
     <p># ${pokemon.id}</p>
     <p>Type: ${pokemon.type}</p>
     <button onclick="saveToSessionStorage(${pokemon.id})">Favorite</button>
+    <button onclick="goToDetailsPage(${pokemon.id})">Details</button>
     
     `;
     pokemonContainer.appendChild(pokemonElement);

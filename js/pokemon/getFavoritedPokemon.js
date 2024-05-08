@@ -30,6 +30,7 @@ const displaySavedPokemon = () => {
           <p># ${pokemon.id}</p>
           <p>Type: ${pokemon.types.map((type) => type.type.name).join(", ")}</p>
           <button onclick="removeSavedPokemon(${pokemon.id})">Remove</button>
+          <button onclick="goToDetailsPage(${pokemon.id})">Details</button>
         `;
         savedPokemonContainer.appendChild(pokemonElement);
       })
