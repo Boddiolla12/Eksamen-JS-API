@@ -16,8 +16,14 @@ const displayPokemon = (pokemonData) => {
     <p># ${pokemon.id}</p>
     <p>Type: ${pokemon.type}</p>
     <button onclick="saveToSessionStorage(${pokemon.id})">Favorite</button>
+    <button onclick="goToDetailsPage(${pokemon.id})">Details</button>
     
     `;
     pokemonContainer.appendChild(pokemonElement);
   });
+};
+
+//function to take user to details page when button is clicked
+const goToDetailsPage = (pokemonId) => {
+  window.location.href = `details.html?id=${pokemonId}`;
 };
