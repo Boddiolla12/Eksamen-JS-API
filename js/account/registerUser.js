@@ -1,10 +1,3 @@
-//function to generate a unique userId
-const generateUserId = () => {
-  let lastUserId = localStorage.getItem("lastUserId");
-  let userId = lastUserId ? parseInt(lastUserId) : 0;
-  return userId;
-};
-
 // checks if username exists, to be used by registerUser function
 const checkUserNameExists = async (username) => {
   const url = `https://crudapi.co.uk/api/v1/user_data?username=${username}`;
@@ -23,7 +16,7 @@ const checkUserNameExists = async (username) => {
     }
 
     const userData = await getResponse.json();
-    //console.log("API Response:", getResponse);
+    //console.log("API Response:", getResponse); //check Api response for troubleshooting
     console.log("Username:", username);
     console.log("Existing user Data:", userData);
 
@@ -37,10 +30,6 @@ const checkUserNameExists = async (username) => {
 
 // function to register new user
 const registerUser = async (username, password) => {
-  //Generates new userId
-  const userId = generateUserId() + 1;
-  console.log("Generated user ID", userId);
-
   //check if username already exists
   const usernameExists = await checkUserNameExists(username);
 
@@ -50,7 +39,7 @@ const registerUser = async (username, password) => {
   }
 
   //If username doesnt exists, proceed with registration
-  const userData = [{ userId, username, password }];
+  const userData = [{ username, password }];
 
   try {
     const postResponse = await fetch(url, {
@@ -65,9 +54,6 @@ const registerUser = async (username, password) => {
     if (!postResponse.ok) {
       throw new Error("Registration failed");
     }
-
-    //increment last assigned userID and store it back to localstorage
-    localStorage.setItem("lastUserId", userId);
 
     alert("Registration successful.");
   } catch (error) {

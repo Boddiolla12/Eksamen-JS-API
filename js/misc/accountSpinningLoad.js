@@ -6,6 +6,7 @@ window.addEventListener("load", () => {
       hideSpinner();
       // show logout button
       document.getElementById("logoutBtn").style.display = "block";
+      document.getElementById("deleteBtn").style.display = "block";
     }, 300);
 
     // Hide login form elements
