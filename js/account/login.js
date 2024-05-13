@@ -54,6 +54,29 @@ const loginUser = async (username, password) => {
       //Save authentication state
       saveAuthState();
 
+      //fetch user data to get "_uuid"
+      const getResponse = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + crudApiKey,
+        },
+      });
+
+      if (!getResponse.ok) {
+        throw new Error("Failed to fetch user data");
+      }
+
+      const userData = await getResponse.json();
+
+      //extract _uuid from response
+      const uuid = userData.items.find((user) => user.username === username)?._uuid;
+
+      if (uuid) {
+        //store -uuid in local storage
+        localStorage.setItem("_uuid", uuid);
+      }
+
       //Functionality to hide loginform elements after succesful login
       const elementsToHide = [
         "username",
