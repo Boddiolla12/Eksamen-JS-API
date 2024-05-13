@@ -39,7 +39,7 @@ const registerUser = async (username, password) => {
   }
 
   //If username doesnt exists, proceed with registration
-  const userData = [{ username, password }];
+  const userData = [{ username: username, password: password, favorites: [] }];
 
   try {
     const postResponse = await fetch(url, {
