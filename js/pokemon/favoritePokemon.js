@@ -3,9 +3,14 @@ const saveToLocalStorage = (pokemonId) => {
   // Retrieve existing pokemon from localstorage
   let savedPokemon = JSON.parse(localStorage.getItem("savedPokemon")) || [];
 
+  // if savedPokemon is not an array/exists intialize
+  if (!Array.isArray(savedPokemon)) {
+    savedPokemon = [];
+  }
+
   //check if pokemon already saved
   if (savedPokemon.includes(pokemonId)) {
-    alert("This pokemon is already saved!");
+    console.log("This pokemon is already saved!");
     return;
   }
 
@@ -15,5 +20,5 @@ const saveToLocalStorage = (pokemonId) => {
   //Save updated array back to localstorage
   localStorage.setItem("savedPokemon", JSON.stringify(savedPokemon));
 
-  alert("Pokemon saved to localStorage");
+  console.log("Pokemon saved to localStorage");
 };
