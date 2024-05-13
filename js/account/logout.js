@@ -1,6 +1,6 @@
 // Logout button functionality
 const logoutUser = () => {
-  sessionStorage.removeItem("loggedIn");
+  localStorage.removeItem("loggedIn");
   const elementsToToggle = [
     "username",
     "usernameLabel",
@@ -12,6 +12,7 @@ const logoutUser = () => {
   ];
   toggleElementDisplay(elementsToToggle, "inline");
   document.getElementById("logoutBtn").style.display = "none";
+  document.getElementById("deleteBtn").style.display = "none";
 };
 
 // Event listener for logout button

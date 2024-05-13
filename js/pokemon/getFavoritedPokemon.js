@@ -1,6 +1,6 @@
-// Retrieve saved pokemon from session storage
+// Retrieve saved pokemon from local storage
 const getSavedPokemon = () => {
-  const savedPokemon = JSON.parse(sessionStorage.getItem("savedPokemon")) || [];
+  const savedPokemon = JSON.parse(localStorage.getItem("savedPokemon")) || [];
   return savedPokemon;
 };
 

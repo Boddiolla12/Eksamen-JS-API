@@ -11,7 +11,7 @@ const toggleElementDisplay = (elementIds, displayValue) => {
   });
 };
 
-// Function to save user authentication state in session storage
+// Function to save user authentication state in localstorage storage
 const saveAuthState = () => {
   localStorage.setItem("loggedIn", "true");
 };
