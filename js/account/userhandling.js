@@ -13,10 +13,10 @@ const toggleElementDisplay = (elementIds, displayValue) => {
 
 // Function to save user authentication state in session storage
 const saveAuthState = () => {
-  sessionStorage.setItem("loggedIn", "true");
+  localStorage.setItem("loggedIn", "true");
 };
 
 // Function to check if the user is already logged in
 const checkLoggedIn = () => {
-  return sessionStorage.getItem("loggedIn") === "true";
+  return localStorage.getItem("loggedIn") === "true";
 };
