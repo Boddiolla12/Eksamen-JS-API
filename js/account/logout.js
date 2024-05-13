@@ -14,6 +14,7 @@ const logoutUser = () => {
   toggleElementDisplay(elementsToToggle, "inline");
   document.getElementById("logoutBtn").style.display = "none";
   document.getElementById("deleteBtn").style.display = "none";
+  console.log("User logged out");
 };
 
 // Event listener for logout button

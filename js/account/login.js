@@ -50,6 +50,7 @@ const loginUser = async (username, password) => {
     //logs if authentication succesfull
     if (userExists) {
       alert("Login successful.");
+      console.log("User logged in.");
 
       //Save authentication state
       saveAuthState();
@@ -75,6 +76,7 @@ const loginUser = async (username, password) => {
       if (uuid) {
         //store -uuid in local storage
         localStorage.setItem("_uuid", uuid);
+        console.log("User id: ", uuid);
       }
 
       //Functionality to hide loginform elements after succesful login
