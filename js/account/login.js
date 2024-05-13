@@ -5,6 +5,7 @@ const checkUserName_passwordExists = async (username, password) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        Authorization: "Bearer " + crudApiKey,
       },
     });
     //check if response is succesful (status code 200)
@@ -35,6 +36,7 @@ const loginUser = async (username, password) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        Authorization: "Bearer " + crudApiKey,
       },
     });
 
