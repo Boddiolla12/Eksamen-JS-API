@@ -24,6 +24,12 @@ const saveToFavorites = async (pokemonId) => {
       throw new Error("User data not found");
     }
 
+    // Check if pokemonId already exoists in favorites
+    if (userDataItem.favorites.includes(pokemonId)) {
+      console.log("Pokemon already exists in favorites");
+      return;
+    }
+
     //push new pokemonId into the favorites array
     userDataItem.favorites.push(pokemonId);
     console.log("PokemonId added to array", userDataItem.favorites);
