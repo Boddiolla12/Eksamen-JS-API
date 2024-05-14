@@ -48,40 +48,50 @@ const displayFavoritePokemon = async () => {
     favoritePokemonContainer.classList.add("favoritePokemon-container");
 
     //fetch pokemon data for each saved pokemon id and displaythem after they all have been fetched
-    await Promise.all(
-      favoritePokemonIds.map(async (pokemonId) => {
-        try {
-          const getResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`, {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
+    const pokemonPromises = favoritePokemonIds.map(async (pokemonId) => {
+      try {
+        const getResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
-          if (!getResponse.ok) {
-            throw new Error(`Failed to fetch pokemon ${pokemonId}`);
-          }
-          const pokemon = await getResponse.json();
-
-          //CReate html element for each favorited pokemon
-          const pokemonElement = document.createElement("li");
-          pokemonElement.classList.add("favoritedPokemon");
-          pokemonElement.innerHTML = `
-  <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-  <h2>${pokemon.name}</h2>
-  <p># ${pokemon.id}</p>
-  <p>Type: ${pokemon.types.map((type) => type.type.name).join(", ")}</p>
-  <button onclick="removeFavoritePokemon(${pokemon.id})">Remove</button>
-  <button onclick="goToDetailsPage(${pokemon.id})">Details</button>
-`;
-
-          //append pokemon element to favorite container
-          favoritePokemonContainer.appendChild(pokemonElement);
-        } catch (error) {
-          console.error("Error fetching or displaying pokemon data:", error);
+        if (!getResponse.ok) {
+          throw new Error(`Failed to fetch pokemon ${pokemonId}`);
         }
-      })
-    );
+
+        return getResponse.json();
+      } catch (error) {
+        console.error("Error fetching or displaying pokemon data:", error);
+      }
+    });
+
+    //Wait for all pokemon data to be fetched
+    const pokemonData = await Promise.all(pokemonPromises);
+
+    //filter out failed requests
+    const validPokemonData = pokemonData.filter((data) => data !== null);
+
+    //sort valid pokemonData by id
+    validPokemonData.sort((a, b) => a.id - b.id);
+
+    //CReate html element for each favorited pokemon
+    validPokemonData.forEach((pokemon) => {
+      const pokemonElement = document.createElement("li");
+      pokemonElement.classList.add("favoritedPokemon");
+      pokemonElement.innerHTML = `
+      <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+      <h2>${pokemon.name}</h2>
+      <p># ${pokemon.id}</p>
+      <p>Type: ${pokemon.types.map((type) => type.type.name).join(", ")}</p>
+      <button onclick="removeFavoritePokemon(${pokemon.id})">Remove</button>
+      <button onclick="goToDetailsPage(${pokemon.id})">Details</button>
+      `;
+
+      //append pokemon element to favorite container
+      favoritePokemonContainer.appendChild(pokemonElement);
+    });
 
     //hide spinner after all pokemondata has been fetched and displayed
     hideSpinner();

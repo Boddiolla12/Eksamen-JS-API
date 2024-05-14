@@ -40,9 +40,12 @@ const saveToFavorites = async (pokemonId) => {
     //push new pokemonId into the favorites array
     userDataItem.favorites.push(pokemonId);
     console.log("PokemonId added to array", userDataItem.favorites);
-    //
 
-    console.log(userData);
+    //sorts the favorites array before its sent to server
+    userDataItem.favorites.sort((a, b) => a - b);
+
+    //console logs userData after push and sort
+    //console.log(userData);
 
     // Construct data object to be sent in PUT request
     const dataToUpdate = {
@@ -68,31 +71,3 @@ const saveToFavorites = async (pokemonId) => {
     console.error("Error saving favorite pokemon", error);
   }
 };
-
-/*
-
-// Retrieve existing pokemon from localstorage
-let savedPokemon = JSON.parse(localStorage.getItem("savedPokemon")) || [];
-
-// if savedPokemon is not an array/exists intialize
-  if (!Array.isArray(savedPokemon)) {
-    savedPokemon = [];
-  }
-
-  //check if pokemon already saved
-  if (savedPokemon.includes(pokemonId)) {
-    console.log("This pokemon is already saved!");
-    return;
-  }
-
-  //Adds pokemonID to savedPokemon Array
-  savedPokemon.push(pokemonId);
-
-  //Save updated array back to localstorage
-  localStorage.setItem("savedPokemon", JSON.stringify(savedPokemon));
-
-  console.log("Pokemon saved to localStorage");
-};
-
-
-*/
