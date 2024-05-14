@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Favorites</title>
     <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/spinningLoad.css" />
   </head>
   <body>
     <header>
@@ -13,12 +14,15 @@
       </nav>
     </header>
     <main>
-      <ul id="savedPokemon-container"></ul>
+      <div class="spinner"></div>
+      <ul id="favoritePokemon-container"></ul>
     </main>
     <footer></footer>
     <script src="/js/navigation/navigation.js"></script>
-    <script src="/js/pokemon/getFavoritedPokemon.js"></script>
-    <script src="/js//pokemon/removeSavedPokemon.js"></script>
+    <script src="/js/misc/spinningLoad.js"></script>
+    <script src="/js/account/userhandling.js"></script>
+    <script src="/js/pokemon/getFavoritePokemon.js"></script>
+    <script src="/js/pokemon/removeFavoritePokemon.js"></script>
     <script src="/js/misc/goToDetailsPage.js"></script>
   </body>
 </html>

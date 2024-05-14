@@ -15,7 +15,7 @@ const displayPokemon = (pokemonData) => {
     <h2>${pokemon.name}</h2>
     <p># ${pokemon.id}</p>
     <p>Type: ${pokemon.type}</p>
-    <button onclick="saveToLocalStorage(${pokemon.id})">Favorite</button>
+    <button onclick="saveToFavorites(${pokemon.id})">Favorite</button>
     <button onclick="goToDetailsPage(${pokemon.id})">Details</button>
     
     `;
