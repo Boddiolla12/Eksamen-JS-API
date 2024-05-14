@@ -26,19 +26,24 @@ const saveToFavorites = async (pokemonId) => {
 
     //push new pokemonId into the favorites array
     userDataItem.favorites.push(pokemonId);
-    console.log(userDataItem.favorites);
+    console.log("PokemonId added to array", userDataItem.favorites);
     //
 
-    ///////////////////////////////////////
-    // PROBLEMER MED PUT REQUEST UNDER
+    console.log(userData);
+
+    // Construct data object to be sent in PUT request
+    const dataToUpdate = {
+      favorites: userDataItem.favorites,
+    };
+
     //
-    const putResponse = await fetch("https://crudapi.co.uk/api/v1/user_data", {
+    const putResponse = await fetch(url + `/${userDataItem._uuid}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + crudApiKey,
       },
-      body: JSON.stringify(userData),
+      body: JSON.stringify(dataToUpdate),
     });
 
     if (!putResponse.ok) {
