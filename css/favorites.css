@@ -1,0 +1,72 @@
+.favoritePokemon-container {
+  position: relative;
+  top: 2rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 60%;
+}
+
+.favoritedPokemon {
+  background-color: white;
+  width: 10rem;
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  bottom: 3rem;
+}
+
+.dropdown:hover {
+  background-color: #143a5380;
+}
+
+/* Dropdown button */
+.dropbtn {
+  background-color: #143a5380;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+
+  width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content button {
+  color: rgb(255, 255, 255);
+  padding: 10px 20px;
+  text-decoration: none;
+  display: block;
+  background-color: #4a4a4abc;
+  border: none;
+  width: inherit;
+  text-align: left;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content button:hover {
+  background-color: #143a53c6;
+  cursor: pointer;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}

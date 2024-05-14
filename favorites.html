@@ -6,6 +6,7 @@
     <title>Favorites</title>
     <link rel="stylesheet" href="/css/global.css" />
     <link rel="stylesheet" href="/css/spinningLoad.css" />
+    <link rel="stylesheet" href="/css/favorites.css" />
   </head>
   <body>
     <header>
@@ -14,14 +15,32 @@
       </nav>
     </header>
     <main>
-      <button id="sortByIdAscendingBtn">Sort upwards by ID</button>
-      <button id="sortByIdDescendingBtn">Sort downwards by ID</button>
-      <button id="sortByNameAscendingBtn">Sort upwards by Name</button>
-      <button id="sortByNameDescendingBtn">Sort downwards by Name</button>
-      <button id="sortByTypeAscendingBtn">Sort upwards by Type</button>
-      <button id="sortByTypeDescendingBtn">Sort downwards by Type</button>
+      <div class="dropdown-container">
+        <div class="dropdown">
+          <button class="dropbtn">Sort by ID</button>
+          <div class="dropdown-content" id="sortByIdDropdown">
+            <button id="sortByIdAscendingBtn">Ascending</button>
+            <button id="sortByIdDescendingBtn">Descending</button>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Sort by Name</button>
+          <div class="dropdown-content" id="sortByNameDropdown">
+            <button id="sortByNameAscendingBtn">Ascending</button>
+            <button id="sortByNameDescendingBtn">Descending</button>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Sort by Type</button>
+          <div class="dropdown-content" id="sortByTypeDropdown">
+            <button id="sortByTypeAscendingBtn">Ascending</button>
+            <button id="sortByTypeDescendingBtn">Descending</button>
+          </div>
+        </div>
+      </div>
+
       <div class="spinner"></div>
-      <ul id="favoritePokemon-container"></ul>
+      <ul class="favoritePokemon-container" id="favoritePokemon-container"></ul>
     </main>
     <footer></footer>
     <script src="/js/navigation/navigation.js"></script>
@@ -29,6 +48,7 @@
     <script src="/js/account/userhandling.js"></script>
     <script src="/js/pokemon/displayFavoritePokemon.js"></script>
     <script src="/js/pokemon/removeFavoritePokemon.js"></script>
+    <script src="/js/misc/dropdown.js"></script>
     <script src="/js/pokemon/sortPokemon.js"></script>
     <script src="/js/misc/goToDetailsPage.js"></script>
   </body>
