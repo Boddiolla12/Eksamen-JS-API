@@ -14,6 +14,7 @@ const sortByNameAscending = () => {
 
   sortedPokemon.map((pokemonElement) => favoritePokemonContainer.appendChild(pokemonElement));
   isNameSortedAscending = true;
+  console.log("Favorited pokemon sorted by ascending Name");
 };
 
 // Sorts by name, descending
@@ -29,6 +30,7 @@ const sortByNameDescending = () => {
 
   sortedPokemon.map((pokemonElement) => favoritePokemonContainer.appendChild(pokemonElement));
   isNameSortedAscending = false;
+  console.log("Favorited pokemon sorted by descending Name");
 };
 
 //sorting pokemon based on ID
@@ -51,6 +53,7 @@ const sortByIdAscending = () => {
   //append sorted pokemonElements back to the container
   sortedPokemon.map((pokemonElement) => favoritePokemonContainer.appendChild(pokemonElement));
   isIdSortedAscending = true;
+  console.log("Favorited pokemon sorted by ascending ID");
 };
 
 //sort by ID descending
@@ -70,6 +73,7 @@ const sortByIdDescending = () => {
   //append sorted pokemonElements back to the container
   sortedPokemon.map((pokemonElement) => favoritePokemonContainer.appendChild(pokemonElement));
   isIdSortedAscending = false;
+  console.log("Favorited pokemon sorted by descending ID");
 };
 
 //sort pokemon by type
@@ -84,12 +88,13 @@ const sortByTypeAscending = () => {
 
   const sortedPokemon = pokemonElements.sort((a, b) =>
     a
-      .querySelector("p:nth-of-type(3)")
-      .textContent.localeCompare(b.querySelector("p:nth-of-type(3)").textContent)
+      .querySelector("p:nth-of-type(2)")
+      .textContent.localeCompare(b.querySelector("p:nth-of-type(2)").textContent)
   );
 
   sortedPokemon.map((pokemonElement) => favoritePokemonContainer.appendChild(pokemonElement));
   isTypeSortedAscending = true;
+  console.log("Favorited pokemon sorted by ascending Type");
 };
 
 // sort by type Descending
@@ -101,12 +106,13 @@ const sortByTypeDescending = () => {
 
   const sortedPokemon = pokemonElements.sort((a, b) =>
     b
-      .querySelector("p:nth-of-type(3)")
-      .textContent.localeCompare(a.querySelector("p:nth-of-type(3)").textContent)
+      .querySelector("p:nth-of-type(2)")
+      .textContent.localeCompare(a.querySelector("p:nth-of-type(2)").textContent)
   );
 
   sortedPokemon.map((pokemonElement) => favoritePokemonContainer.appendChild(pokemonElement));
   isTypeSortedAscending = false;
+  console.log("Favorited pokemon sorted by descending Type");
 };
 
 // Add event listeners to sorting buttons
