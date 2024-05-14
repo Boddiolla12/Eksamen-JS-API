@@ -1,6 +1,13 @@
 //Saving favorited pokemon to server
 const saveToFavorites = async (pokemonId) => {
   try {
+    // check if user is logged in
+    const userId = localStorage.getItem("_uuid");
+    if (!userId) {
+      console.log("No user logged in. Cannot save favorite pokemon");
+      return;
+    }
+
     //Fetch current userData
     const getResponse = await fetch(url, {
       method: "GET",
