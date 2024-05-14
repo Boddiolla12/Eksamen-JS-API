@@ -1,7 +1,11 @@
 // Logout button functionality
 const logoutUser = () => {
+  //remove authentication state
   localStorage.removeItem("loggedIn");
   localStorage.removeItem("_uuid");
+  // remove user's name display
+  removeUsername();
+
   const elementsToToggle = [
     "username",
     "usernameLabel",

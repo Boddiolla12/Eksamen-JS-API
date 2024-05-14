@@ -79,6 +79,8 @@ const loginUser = async (username, password) => {
         console.log("User id: ", uuid);
       }
 
+      displayUsername(username);
+
       //Functionality to hide loginform elements after succesful login
       const elementsToHide = [
         "username",
