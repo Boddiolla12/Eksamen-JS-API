@@ -14,10 +14,10 @@ const removeFavoritePokemon = async (pokemonId) => {
     }
 
     const userData = await getResponse.json();
-    console.log(userData);
+    //console.log(userData);
 
     const userDataItem = userData.items.find((item) => item._uuid);
-    console.log(userDataItem);
+    //console.log(userDataItem);
 
     if (!userDataItem) {
       throw new Error("User data not found");
@@ -49,7 +49,7 @@ const removeFavoritePokemon = async (pokemonId) => {
       throw new Error("Failed to remove favorite pokemon");
     }
 
-    console.log(putResponse);
+    // console.log(putResponse);
     console.log("Pokemon removed from favorites");
 
     //update display after removing pokemon

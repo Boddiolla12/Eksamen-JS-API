@@ -1,6 +1,17 @@
 // Retrieve saved pokemon from local storage
 const displayFavoritePokemon = async () => {
   try {
+    //show spinner
+    showSpinner();
+
+    //retrieve uuid from local storage
+    const userId = localStorage.getItem("_uuid");
+
+    //Check if uuid is present
+    if (!userId) {
+      throw new error("uuid not found in local storage");
+    }
+
     //fetch current userData
     const getResponse = await fetch(url, {
       method: "GET",
@@ -14,10 +25,10 @@ const displayFavoritePokemon = async () => {
       throw new Error("Failed to fetch user data");
     }
     const userData = await getResponse.json();
-    console.log(userData);
+    //console.log(userData);
 
-    const userDataItem = userData.items.find((item) => item._uuid);
-    console.log(userDataItem);
+    const userDataItem = userData.items.find((item) => item._uuid === userId);
+    //console.log(userDataItem);
 
     if (!userDataItem) {
       throw new Error("User data not found");
@@ -26,6 +37,9 @@ const displayFavoritePokemon = async () => {
     // Get array of favorited pokemon ID's
     const favoritePokemonIds = userDataItem.favorites;
 
+    // wait for set duration to ensure spinner is displayed
+    await new Promise((resolve) => setTimeout(resolve, 300));
+
     // get container where savedPokemon will be displayed
     const favoritePokemonContainer = document.getElementById("favoritePokemon-container");
 
@@ -33,25 +47,26 @@ const displayFavoritePokemon = async () => {
     favoritePokemonContainer.innerHTML = "";
     favoritePokemonContainer.classList.add("favoritePokemon-container");
 
-    //fetch pokemon data for each saved pokemon id and displaythem
-    favoritePokemonIds.forEach(async (pokemonId) => {
-      try {
-        const getResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+    //fetch pokemon data for each saved pokemon id and displaythem after they all have been fetched
+    await Promise.all(
+      favoritePokemonIds.map(async (pokemonId) => {
+        try {
+          const getResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
 
-        if (!getResponse.ok) {
-          throw new Error(`Failed to fetch pokemon ${pokemonId}`);
-        }
-        const pokemon = await getResponse.json();
+          if (!getResponse.ok) {
+            throw new Error(`Failed to fetch pokemon ${pokemonId}`);
+          }
+          const pokemon = await getResponse.json();
 
-        //CReate html element for each favorited pokemon
-        const pokemonElement = document.createElement("li");
-        pokemonElement.classList.add("favoritedPokemon");
-        pokemonElement.innerHTML = `
+          //CReate html element for each favorited pokemon
+          const pokemonElement = document.createElement("li");
+          pokemonElement.classList.add("favoritedPokemon");
+          pokemonElement.innerHTML = `
   <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
   <h2>${pokemon.name}</h2>
   <p># ${pokemon.id}</p>
@@ -60,14 +75,18 @@ const displayFavoritePokemon = async () => {
   <button onclick="goToDetailsPage(${pokemon.id})">Details</button>
 `;
 
-        //append pokemon element to favorite container
-        favoritePokemonContainer.appendChild(pokemonElement);
-      } catch (error) {
-        console.error("Error fetching pokemon data:", error);
-      }
-    });
+          //append pokemon element to favorite container
+          favoritePokemonContainer.appendChild(pokemonElement);
+        } catch (error) {
+          console.error("Error fetching or displaying pokemon data:", error);
+        }
+      })
+    );
+
+    //hide spinner after all pokemondata has been fetched and displayed
+    hideSpinner();
   } catch (error) {
-    console.error("Error displaying saved pokemon", error);
+    console.error("Error displaying saved pokemon, user might not be logged in", error);
   }
 };
 
