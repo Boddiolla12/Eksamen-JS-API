@@ -1,5 +1,20 @@
+h1 {
+  color: white;
+}
+
+.user-name {
+  color: white;
+  margin: 10px;
+
+  font-size: 1.4rem;
+}
+
 .formElementContainer {
   display: flex;
   flex-direction: column;
   padding: 3rem;
+}
+
+.spinner {
+  top: 10rem;
 }
