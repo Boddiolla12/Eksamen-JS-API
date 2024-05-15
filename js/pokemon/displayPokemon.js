@@ -3,7 +3,7 @@ const displayPokemon = (pokemonData) => {
 
   // Clear previous content
   pokemonContainer.innerHTML = "";
-  pokemonContainer.classList.add("pokemon-container");
+  pokemonContainer.classList.add("displayPokemon-container", "pokemon-container");
 
   // Create HTML elements for each pokemon and append to container
   pokemonData.forEach((pokemon) => {

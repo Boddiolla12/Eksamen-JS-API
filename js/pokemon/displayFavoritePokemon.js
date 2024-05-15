@@ -45,7 +45,7 @@ const displayFavoritePokemon = async () => {
 
     //Clear previous content
     favoritePokemonContainer.innerHTML = "";
-    favoritePokemonContainer.classList.add("favoritePokemon-container");
+    favoritePokemonContainer.classList.add("favoritePokemon-container", "pokemon-container");
 
     //fetch pokemon data for each saved pokemon id and displaythem after they all have been fetched
     const pokemonPromises = favoritePokemonIds.map(async (pokemonId) => {

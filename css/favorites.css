@@ -19,6 +19,22 @@
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
+.favoritedPokemon > * {
+  margin: 5px;
+}
+
+.favoritedPokemon > button {
+  border: none;
+  width: 5rem;
+  height: 1.5rem;
+  background-color: rgba(171, 238, 71, 0.48);
+}
+
+.favoritedPokemon > button:hover {
+  background-color: rgba(169, 245, 55, 0.794);
+  cursor: pointer;
+}
+
 /* Dropdown container */
 .dropdown {
   position: relative;

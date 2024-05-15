@@ -2,7 +2,7 @@ h1 {
   color: white;
 }
 
-.pokemon-container {
+.displayPokemon-container {
   display: flex;
   flex-direction: row;
   width: 80%;
@@ -11,7 +11,7 @@ h1 {
   align-items: center;
 }
 
-.pokemon-container > li {
+.displayPokemon-container > li {
   margin: 10px;
 }
 

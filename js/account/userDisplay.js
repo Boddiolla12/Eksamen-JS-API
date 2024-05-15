@@ -35,3 +35,11 @@ const removeUsername = () => {
 
 // Call displaystoredusername when page loads to show welcome message if logged in
 window.addEventListener("load", displayStoredUsername);
+
+// adds class to logoutBtn and deleteBtn
+document.getElementById("logoutBtn").classList.add("logoutBtn", "accountBtn");
+document.getElementById("deleteBtn").classList.add("deleteBtn", "accountBtn");
+
+// adds class to loginBtn and registerBtn
+document.getElementById("loginBtn").classList.add("loginBtn", "accountBtn");
+document.getElementById("registerBtn").classList.add("registerBtn", "accountBtn");
