@@ -6,6 +6,7 @@
     <title>Index</title>
     <link rel="stylesheet" href="/css/global.css" />
     <link rel="stylesheet" href="/css/spinningLoad.css" />
+    <link rel="stylesheet" href="/css/dropdown.css" />
     <link rel="stylesheet" href="/css/index.css" />
   </head>
   <body>
@@ -15,6 +16,29 @@
       </nav>
     </header>
     <main>
+      <div class="dropdown-container">
+        <div class="dropdown">
+          <button class="dropbtn">Sort by ID</button>
+          <div class="dropdown-content" id="sortByIdDropdown">
+            <button id="sortByIdAscendingBtn">Ascending</button>
+            <button id="sortByIdDescendingBtn">Descending</button>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Sort by Name</button>
+          <div class="dropdown-content" id="sortByNameDropdown">
+            <button id="sortByNameAscendingBtn">Ascending</button>
+            <button id="sortByNameDescendingBtn">Descending</button>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Sort by Type</button>
+          <div class="dropdown-content" id="sortByTypeDropdown">
+            <button id="sortByTypeAscendingBtn">Ascending</button>
+            <button id="sortByTypeDescendingBtn">Descending</button>
+          </div>
+        </div>
+      </div>
       <h1>Pokstad akademiet sin pokedex</h1>
       <div class="spinner"></div>
       <ul id="pokemon-container"></ul>
@@ -26,6 +50,8 @@
     <script src="/js/pokemon/fetchPokemon.js"></script>
     <script src="/js/pokemon/displayPokemon.js"></script>
     <script src="/js/pokemon/saveFavoritePokemon.js"></script>
+    <script src="/js/thethinktank.js/sortReusable.js"></script>
+    <!--<script src="/js/pokemon/sortPokemon.js"></script>-->
     <script src="/js/misc/goToDetailsPage.js"></script>
   </body>
 </html>

@@ -20,70 +20,30 @@
 }
 
 .favoritedPokemon > * {
-  margin: 5px;
+  margin: 4px;
 }
 
 .favoritedPokemon > button {
   border: none;
   width: 5rem;
   height: 1.5rem;
+}
+.favoritedPokemon > button:hover {
+  cursor: pointer;
+}
+
+.removeBtn {
+  background-color: rgba(238, 168, 168, 0.845);
+}
+
+.removeBtn:hover {
+  background-color: rgba(239, 111, 111, 0.845);
+}
+
+.detailsBtn {
   background-color: rgba(171, 238, 71, 0.48);
 }
 
-.favoritedPokemon > button:hover {
+.detailsBtn:hover {
   background-color: rgba(169, 245, 55, 0.794);
-  cursor: pointer;
-}
-
-/* Dropdown container */
-.dropdown {
-  position: relative;
-  display: inline-block;
-  bottom: 3rem;
-}
-
-.dropdown:hover {
-  background-color: #143a5380;
-}
-
-/* Dropdown button */
-.dropbtn {
-  background-color: #143a5380;
-  color: white;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-
-  width: 100%;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content button {
-  color: rgb(255, 255, 255);
-  padding: 10px 20px;
-  text-decoration: none;
-  display: block;
-  background-color: #4a4a4abc;
-  border: none;
-  width: inherit;
-  text-align: left;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content button:hover {
-  background-color: #143a53c6;
-  cursor: pointer;
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-  display: block;
 }
