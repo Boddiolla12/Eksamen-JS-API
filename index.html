@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="/css/spinningLoad.css" />
     <link rel="stylesheet" href="/css/dropdown.css" />
     <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/pokemonSort.css" />
+    <link rel="stylesheet" href="/css/displayMessage.css" />
   </head>
   <body>
     <header>
@@ -38,6 +40,29 @@
             <button id="sortByTypeDescendingBtn">Descending</button>
           </div>
         </div>
+        <div class="dropdown">
+          <button class="dropbtn">Filter Type</button>
+          <div class="dropdown-content" id="sortByTypeDropdown">
+            <button class="pokemonTypes" id="showAll" value="all">All</button>
+            <button class="pokemonTypes" id="grass" value="grass">Grass</button>
+            <button class="pokemonTypes" id="fire" value="fire">Fire</button>
+            <button class="pokemonTypes" id="water" value="water">Water</button>
+            <button class="pokemonTypes" id="poison" value="poison">Poison</button>
+            <button class="pokemonTypes" id="flying" value="flying">Flying</button>
+            <button class="pokemonTypes" id="bug" value="bug">Bug</button>
+            <button class="pokemonTypes" id="normal" value="normal">Normal</button>
+            <button class="pokemonTypes" id="ground" value="ground">Ground</button>
+            <button class="pokemonTypes" id="fairy" value="fairy">Fairy</button>
+            <button class="pokemonTypes" id="fighting" value="fighting">Fighting</button>
+            <button class="pokemonTypes" id="psychic" value="psychic">Psychic</button>
+            <button class="pokemonTypes" id="rock" value="rock">Rock</button>
+            <button class="pokemonTypes" id="electric" value="electric">Electric</button>
+            <button class="pokemonTypes" id="steel" value="steel">Steel</button>
+            <button class="pokemonTypes" id="ice" value="ice">Ice</button>
+            <button class="pokemonTypes" id="ghost" value="ghost">Ghost</button>
+            <button class="pokemonTypes" id="dragon" value="dragon">Dragon</button>
+          </div>
+        </div>
       </div>
       <h1>Pokstad akademiet sin pokedex</h1>
       <div class="spinner"></div>
@@ -51,6 +76,8 @@
     <script src="/js/pokemon/displayPokemon.js"></script>
     <script src="/js/pokemon/saveFavoritePokemon.js"></script>
     <script src="/js/thethinktank.js/sortReusable.js"></script>
+    <script src="/js/pokemon/filterPokemonType.js"></script>
+    <script src="/js/misc/displayMessage.js"></script>
     <!--<script src="/js/pokemon/sortPokemon.js"></script>-->
     <script src="/js/misc/goToDetailsPage.js"></script>
   </body>

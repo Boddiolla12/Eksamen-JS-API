@@ -1,0 +1,14 @@
+.errorMessageBox {
+  position: absolute;
+  top: 7rem;
+  left: 50%;
+  transform: translatex(-50%);
+
+  text-align: center;
+  background-color: rgba(75, 77, 105, 0.845);
+  height: auto;
+  width: auto;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
