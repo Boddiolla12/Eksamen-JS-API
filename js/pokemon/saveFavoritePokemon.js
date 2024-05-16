@@ -22,10 +22,10 @@ const saveToFavorites = async (pokemonId) => {
     }
 
     const userData = await getResponse.json();
-    console.log(userData);
+    //console.log(userData);
 
     const userDataItem = userData.items.find((item) => item._uuid);
-    console.log(userDataItem);
+    //console.log(userDataItem);
 
     if (!userDataItem) {
       throw new Error("User data not found");
@@ -65,7 +65,7 @@ const saveToFavorites = async (pokemonId) => {
     if (!putResponse.ok) {
       throw new Error("Failed to save favorite pokemon");
     }
-    console.log(putResponse);
+    //console.log(putResponse);
     console.log("Pokemon saved to favorites");
   } catch (error) {
     console.error("Error saving favorite pokemon", error);

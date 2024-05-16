@@ -3,12 +3,12 @@ const displayPokemon = (pokemonData) => {
 
   // Clear previous content
   pokemonContainer.innerHTML = "";
-  pokemonContainer.classList.add("pokemon-container");
+  pokemonContainer.classList.add("displayPokemon-container", "pokemon-container");
 
   // Create HTML elements for each pokemon and append to container
   pokemonData.forEach((pokemon) => {
     const pokemonElement = document.createElement("li");
-    pokemonElement.classList.add("pokemon");
+    pokemonElement.classList.add("pokemon", "pokemonSort");
 
     pokemonElement.innerHTML = `
     <img src="${pokemon.image}" alt="${pokemon.name}">

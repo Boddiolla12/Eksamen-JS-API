@@ -1,17 +1,45 @@
-.pokemon-container {
+h1 {
+  color: white;
+}
+
+.displayPokemon-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  width: 80%;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
 
+.displayPokemon-container > li {
+  margin: 10px;
+}
+
 .pokemon {
-  background-color: white;
-  height: 20rem;
-  width: 30rem;
+  background-color: rgba(188, 191, 236, 0.845);
+  height: 15rem;
+  width: 15rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   justify-content: space-evenly;
-  border: 3px solid orange;
+}
+
+.pokemon > button {
+  border: none;
+  width: 5rem;
+  height: 1.5rem;
+  background-color: rgba(171, 238, 71, 0.48);
+}
+
+.pokemon > button:hover {
+  background-color: rgba(169, 245, 55, 0.794);
+  cursor: pointer;
+}
+
+.spinner {
+  top: 12rem;
+  width: 100px;
+  height: 100px;
 }

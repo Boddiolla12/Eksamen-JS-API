@@ -1,5 +1,79 @@
+h1 {
+  color: white;
+}
+
+.user-name {
+  color: white;
+  margin: 10px;
+
+  font-size: 1.4rem;
+}
+
+.loginBtn {
+  background-color: rgba(193, 238, 168, 0.845);
+}
+
+.loginBtn:hover {
+  background-color: rgba(153, 239, 106, 0.845);
+}
+
+.registerBtn {
+  background-color: rgba(193, 238, 168, 0.845);
+}
+
+.registerBtn:hover {
+  background-color: rgba(153, 239, 106, 0.845);
+}
+
+.accountBtn {
+  border: none;
+}
+
+.accountBtn:hover {
+  cursor: pointer;
+}
+
+.logoutBtn {
+  width: 5rem;
+  height: 3rem;
+  margin: 10px;
+  background-color: rgba(193, 238, 168, 0.845);
+}
+
+.logoutBtn:hover {
+  background-color: rgba(153, 239, 106, 0.845);
+}
+
+.deleteBtn {
+  width: 5rem;
+  height: 3rem;
+  margin: 10px;
+  background-color: rgba(238, 168, 168, 0.845);
+}
+
+.deleteBtn:hover {
+  background-color: rgba(239, 111, 111, 0.845);
+}
+
 .formElementContainer {
   display: flex;
   flex-direction: column;
   padding: 3rem;
+}
+
+.formElementContainer > input {
+  margin-bottom: 1px;
+}
+
+.formElementContainer > label {
+  color: white;
+  margin-bottom: 2px;
+}
+
+.formElementContainer > button {
+  margin-bottom: 20px;
+}
+
+.spinner {
+  top: 10rem;
 }

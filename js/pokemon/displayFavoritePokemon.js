@@ -45,7 +45,9 @@ const displayFavoritePokemon = async () => {
 
     //Clear previous content
     favoritePokemonContainer.innerHTML = "";
-    favoritePokemonContainer.classList.add("favoritePokemon-container");
+
+    //add class to container
+    favoritePokemonContainer.classList.add("favoritePokemon-container", "pokemon-container");
 
     //fetch pokemon data for each saved pokemon id and displaythem after they all have been fetched
     const pokemonPromises = favoritePokemonIds.map(async (pokemonId) => {
@@ -79,14 +81,14 @@ const displayFavoritePokemon = async () => {
     //CReate html element for each favorited pokemon
     validPokemonData.forEach((pokemon) => {
       const pokemonElement = document.createElement("li");
-      pokemonElement.classList.add("favoritedPokemon");
+      pokemonElement.classList.add("favoritedPokemon", "pokemonSort");
       pokemonElement.innerHTML = `
       <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
       <h2>${pokemon.name}</h2>
       <p># ${pokemon.id}</p>
       <p>Type: ${pokemon.types.map((type) => type.type.name).join(", ")}</p>
-      <button onclick="removeFavoritePokemon(${pokemon.id})">Remove</button>
-      <button onclick="goToDetailsPage(${pokemon.id})">Details</button>
+      <button class="removeBtn" onclick="removeFavoritePokemon(${pokemon.id})">Remove</button>
+      <button class="detailsBtn"  onclick="goToDetailsPage(${pokemon.id})">Details</button>
       `;
 
       //append pokemon element to favorite container

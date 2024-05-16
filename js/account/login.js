@@ -97,6 +97,7 @@ const loginUser = async (username, password) => {
       document.getElementById("username").focus();
       toggleElementDisplay(elementsToHide, "none");
       document.getElementById("logoutBtn").style.display = "block";
+
       document.getElementById("deleteBtn").style.display = "block";
     } else {
       alert("Invalid username or password");

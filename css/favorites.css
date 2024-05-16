@@ -1,0 +1,58 @@
+h1 {
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.favoritePokemon-container {
+  position: relative;
+  top: 2rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 80%;
+}
+
+.favoritedPokemon {
+  background-color: rgba(188, 191, 236, 0.845);
+  width: 10rem;
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.favoritedPokemon > * {
+  margin: 4px;
+}
+
+.favoritedPokemon > button {
+  border: none;
+  width: 5rem;
+  height: 1.5rem;
+}
+.favoritedPokemon > button:hover {
+  cursor: pointer;
+}
+
+.removeBtn {
+  background-color: rgba(238, 168, 168, 0.845);
+}
+
+.removeBtn:hover {
+  background-color: rgba(239, 111, 111, 0.845);
+}
+
+.detailsBtn {
+  background-color: rgba(171, 238, 71, 0.48);
+}
+
+.detailsBtn:hover {
+  background-color: rgba(169, 245, 55, 0.794);
+}
+
+.spinner {
+  top: 12rem;
+}

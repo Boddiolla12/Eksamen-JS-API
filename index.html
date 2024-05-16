@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Index</title>
     <link rel="stylesheet" href="/css/global.css" />
-    <link rel="stylesheet" href="/css/index.css" />
     <link rel="stylesheet" href="/css/spinningLoad.css" />
+    <link rel="stylesheet" href="/css/dropdown.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/pokemonSort.css" />
+    <link rel="stylesheet" href="/css/displayMessage.css" />
   </head>
   <body>
     <header>
@@ -15,6 +18,52 @@
       </nav>
     </header>
     <main>
+      <div class="dropdown-container">
+        <div class="dropdown">
+          <button class="dropbtn">Sort by ID</button>
+          <div class="dropdown-content" id="sortByIdDropdown">
+            <button id="sortByIdAscendingBtn">Ascending</button>
+            <button id="sortByIdDescendingBtn">Descending</button>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Sort by Name</button>
+          <div class="dropdown-content" id="sortByNameDropdown">
+            <button id="sortByNameAscendingBtn">Ascending</button>
+            <button id="sortByNameDescendingBtn">Descending</button>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Sort by Type</button>
+          <div class="dropdown-content" id="sortByTypeDropdown">
+            <button id="sortByTypeAscendingBtn">Ascending</button>
+            <button id="sortByTypeDescendingBtn">Descending</button>
+          </div>
+        </div>
+        <div class="dropdown" class="filterByTypeDropdown">
+          <button class="dropbtn">Filter Type</button>
+          <div class="dropdown-content" id="filterByTypeDropdown">
+            <button class="pokemonTypes" value="all">All</button>
+            <button class="pokemonTypes" value="grass">Grass</button>
+            <button class="pokemonTypes" value="fire">Fire</button>
+            <button class="pokemonTypes" value="water">Water</button>
+            <button class="pokemonTypes" value="poison">Poison</button>
+            <button class="pokemonTypes" value="flying">Flying</button>
+            <button class="pokemonTypes" value="bug">Bug</button>
+            <button class="pokemonTypes" value="normal">Normal</button>
+            <button class="pokemonTypes" value="ground">Ground</button>
+            <button class="pokemonTypes" value="fairy">Fairy</button>
+            <button class="pokemonTypes" value="fighting">Fighting</button>
+            <button class="pokemonTypes" value="psychic">Psychic</button>
+            <button class="pokemonTypes" value="rock">Rock</button>
+            <button class="pokemonTypes" value="electric">Electric</button>
+            <button class="pokemonTypes" value="steel">Steel</button>
+            <button class="pokemonTypes" value="ice">Ice</button>
+            <button class="pokemonTypes" value="ghost">Ghost</button>
+            <button class="pokemonTypes" value="dragon">Dragon</button>
+          </div>
+        </div>
+      </div>
       <h1>Pokstad akademiet sin pokedex</h1>
       <div class="spinner"></div>
       <ul id="pokemon-container"></ul>
@@ -26,6 +75,10 @@
     <script src="/js/pokemon/fetchPokemon.js"></script>
     <script src="/js/pokemon/displayPokemon.js"></script>
     <script src="/js/pokemon/saveFavoritePokemon.js"></script>
+    <script src="/js/pokemon/sortingPokemon.js"></script>
+    <script src="/js/pokemon/filterPokemonType.js"></script>
+    <script src="/js/misc/displayMessage.js"></script>
+    <!--<script src="/js/pokemon/sortPokemon.js"></script>-->
     <script src="/js/misc/goToDetailsPage.js"></script>
   </body>
 </html>
