@@ -39,6 +39,9 @@ const fetchPokemon = async () => {
       type: data.types.map((type) => type.type.name).join(", "), //maps pokemon types into a single string
     }));
 
+    //Save pokemon data to local storage
+    localStorage.setItem("pokemonData", JSON.stringify(pokemon));
+
     // Log processed data
     console.log(pokemon);
     displayPokemon(pokemon);
@@ -50,6 +53,7 @@ const fetchPokemon = async () => {
   }
 };
 
+//eventlistener to fetch Pokemon data when dom loads
 document.addEventListener("DOMContentLoaded", () => {
   fetchPokemon();
 });

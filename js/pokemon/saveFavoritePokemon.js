@@ -30,7 +30,7 @@ const saveToFavorites = async (pokemonId) => {
 
     // Check if pokemonId already exists in favorites
     if (userData.favorites.includes(pokemonId)) {
-      console.log("Pokemon already exists in favorites");
+      console.log(`Pokemon ${pokemonId} already exists in favorites`);
       return;
     }
 
@@ -72,7 +72,9 @@ const saveToFavorites = async (pokemonId) => {
         "favoritePokemonIds",
         JSON.stringify(favoritePokemonIds)
       );
-      console.log("PokemonId added to favoritePokemonIds in local storage");
+      console.log(
+        `Pokemon ${pokemonId} added to favoritePokemonIds in local storage`
+      );
     }
 
     //console.log(putResponse);

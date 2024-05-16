@@ -126,6 +126,16 @@ const displayFavoritePokemon = async () => {
       "Error displaying saved pokemon, user might not be logged in",
       error
     );
+  } finally {
+    hideSpinner();
+
+    //checks if user is not logged in and displays message
+    if (!localStorage.getItem("loggedIn")) {
+      const noUserLoggedInMessage = document.createElement("div");
+      noUserLoggedInMessage.textContent = "No user is logged in.";
+      noUserLoggedInMessage.classList.add("noUserLoggedInMessage");
+      document.body.appendChild(noUserLoggedInMessage);
+    }
   }
 };
 

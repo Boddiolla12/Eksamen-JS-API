@@ -12,3 +12,11 @@
   padding: 10px 20px;
   border-radius: 5px;
 }
+
+.noUserLoggedInMessage {
+  position: absolute;
+  top: 18rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+}
