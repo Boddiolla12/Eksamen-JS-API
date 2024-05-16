@@ -1,0 +1,19 @@
+.pokemonDetails-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  width: 18rem;
+  height: 30rem;
+  margin: 10px;
+  padding: 10px;
+}
+
+.pokemonDetails-container > li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  margin: 10px;
+  padding: 10px;
+}
