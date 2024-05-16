@@ -13,7 +13,7 @@ const displayFavoritePokemon = async () => {
     }
 
     //fetch current userData
-    const getResponse = await fetch(url, {
+    const getResponse = await fetch(url + `/${userId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -27,37 +27,38 @@ const displayFavoritePokemon = async () => {
     const userData = await getResponse.json();
     //console.log(userData);
 
-    const userDataItem = userData.items.find((item) => item._uuid === userId);
-    //console.log(userDataItem);
-
-    if (!userDataItem) {
-      throw new Error("User data not found");
-    }
-
     // Get array of favorited pokemon ID's
-    const favoritePokemonIds = userDataItem.favorites;
+    const favoritePokemonIds = userData.favorites;
 
     // wait for set duration to ensure spinner is displayed
     await new Promise((resolve) => setTimeout(resolve, 300));
 
     // get container where savedPokemon will be displayed
-    const favoritePokemonContainer = document.getElementById("favoritePokemon-container");
+    const favoritePokemonContainer = document.getElementById(
+      "favoritePokemon-container"
+    );
 
     //Clear previous content
     favoritePokemonContainer.innerHTML = "";
 
     //add class to container
-    favoritePokemonContainer.classList.add("favoritePokemon-container", "pokemon-container");
+    favoritePokemonContainer.classList.add(
+      "favoritePokemon-container",
+      "pokemon-container"
+    );
 
-    //fetch pokemon data for each saved pokemon id and displaythem after they all have been fetched
+    //fetch pokemon data for each saved pokemon id and display them after they all have been fetched
     const pokemonPromises = favoritePokemonIds.map(async (pokemonId) => {
       try {
-        const getResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const getResponse = await fetch(
+          `https://pokeapi.co/api/v2/pokemon/${pokemonId}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         if (!getResponse.ok) {
           throw new Error(`Failed to fetch pokemon ${pokemonId}`);
@@ -87,8 +88,12 @@ const displayFavoritePokemon = async () => {
       <h2>${pokemon.name}</h2>
       <p># ${pokemon.id}</p>
       <p>Type: ${pokemon.types.map((type) => type.type.name).join(", ")}</p>
-      <button class="removeBtn" onclick="removeFavoritePokemon(${pokemon.id})">Remove</button>
-      <button class="detailsBtn"  onclick="goToDetailsPage(${pokemon.id})">Details</button>
+      <button class="removeBtn" onclick="removeFavoritePokemon(${
+        pokemon.id
+      })">Remove</button>
+      <button class="detailsBtn"  onclick="goToDetailsPage(${
+        pokemon.id
+      })">Details</button>
       `;
 
       //append pokemon element to favorite container
@@ -98,7 +103,10 @@ const displayFavoritePokemon = async () => {
     //hide spinner after all pokemondata has been fetched and displayed
     hideSpinner();
   } catch (error) {
-    console.error("Error displaying saved pokemon, user might not be logged in", error);
+    console.error(
+      "Error displaying saved pokemon, user might not be logged in",
+      error
+    );
   }
 };
 

@@ -1,7 +1,13 @@
 const removeFavoritePokemon = async (pokemonId) => {
   try {
     //fetch current userData
-    const getResponse = await fetch(url, {
+    const userId = localStorage.getItem("_uuid");
+    if (!userId) {
+      console.log("No user logged in. Cannot remove favorite pokemon");
+      return;
+    }
+
+    const getResponse = await fetch(url + `/${userId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -14,30 +20,23 @@ const removeFavoritePokemon = async (pokemonId) => {
     }
 
     const userData = await getResponse.json();
-    //console.log(userData);
-
-    const userDataItem = userData.items.find((item) => item._uuid);
-    //console.log(userDataItem);
-
-    if (!userDataItem) {
-      throw new Error("User data not found");
-    }
+    console.log(userData);
 
     //remove specified pokemonId from the favorites array
-    const pokemonToRemove = userDataItem.favorites.indexOf(pokemonId);
-    if (pokemonToRemove !== -1) {
-      userDataItem.favorites.splice(pokemonToRemove, 1);
+    const pokemonToRemoveIndex = userData.favorites.indexOf(pokemonId);
+    if (pokemonToRemoveIndex !== -1) {
+      userData.favorites.splice(pokemonToRemoveIndex, 1);
     } else {
       throw new Error("Pokemon not found in favorites");
     }
 
     //construct data object to be sent in PUT request
     const dataToUpdate = {
-      favorites: userDataItem.favorites,
+      favorites: userData.favorites,
     };
 
     //send updated data to server
-    const putResponse = await fetch(url + `/${userDataItem._uuid}`, {
+    const putResponse = await fetch(url + `/${userId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
