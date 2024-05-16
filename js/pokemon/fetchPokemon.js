@@ -1,35 +1,29 @@
-// Define async function
-const fetchPokemon = async () => {
-  const pokeArray = [];
-
-  // show loading spinner
+hideSpinner();
+const fetchPokemonFromApi = async () => {
+  // Show spinner if data is fetched from API
   showSpinner();
 
+  //creating temporary array for storing data until its sent to localstorage
+  const pokeArray = [];
   try {
-    // Create promises for fetching data for each pokemon
+    // Define baseUrl for fetching
+    const baseUrl = "https://pokeapi.co/api/v2/pokemon/";
+
+    //fetch data for each pokemon
     for (let i = 1; i < 152; i++) {
-      const baseUrl = `https://pokeapi.co/api/v2/pokemon/${i}`;
-      /*const requestOptions = {
+      const getResponse = await fetch(`${baseUrl}${i}`, {
         method: "GET",
         headers: {
-          "Content-Type": "application/json", // Problemer med treg load ved bruk av headers
-        }, 
-      };
-      */
-
-      try {
-        const response = await fetch(baseUrl /* requestOptions*/);
-        if (!response.ok) {
-          throw new Error(`Failed to fetch pokemon ${i}`);
-        }
-        const data = await response.json();
-        pokeArray.push(data);
-      } catch (error) {
-        // Catching error within the loop, and stops looping if error is encountered
-        console.log(`Error fetching pokemon ${i}`, error);
-        return;
+          "Content-Type": "application/json",
+        },
+      });
+      if (!getResponse.ok) {
+        throw new Error(`Failed to fetch pokemon ${i}`);
       }
+      const data = await getResponse.json();
+      pokeArray.push(data);
     }
+    console.log("Fetched pokemon data:", pokeArray);
 
     // processing fetched pokedata
     const pokemon = pokeArray.map((data) => ({
@@ -41,19 +35,44 @@ const fetchPokemon = async () => {
 
     //Save pokemon data to local storage
     localStorage.setItem("pokemonData", JSON.stringify(pokemon));
-
-    // Log processed data
-    console.log(pokemon);
-    displayPokemon(pokemon);
+    return pokemon;
   } catch (error) {
-    console.error("Error fetching pokemon data", error);
+    console.error("Error fetching pokemon data from Api.", error);
+    displayErrorMessage(
+      "Failed to fetch pokemon data from Api. Try again later."
+    );
+    return;
   } finally {
-    //hide loading spinner regardless of success or failure
     hideSpinner();
+  }
+};
+// Fetch pokemonFromLocalStorage
+const fetchPokemonFromLocalStorage = async () => {
+  try {
+    //check if pokemon data is available in local storage
+    const storedPokemonData = localStorage.getItem("pokemonData");
+    //initialize pokemonData variable
+    if (storedPokemonData) {
+      // if data available, parse and display
+      pokemonData = JSON.parse(storedPokemonData);
+      displayPokemon(pokemonData);
+    } else {
+      // If data is not available in local storage, fetch it from api
+      pokemonData = await fetchPokemonFromApi();
+      displayPokemon(pokemonData);
+    }
+  } catch (error) {
+    console.error(
+      "Error fetching pokemon data from storage. Try again later.",
+      error
+    );
+    displayErrorMessage(
+      "Failed to fetch pokemon data from storage. Try again later."
+    );
   }
 };
 
 //eventlistener to fetch Pokemon data when dom loads
 document.addEventListener("DOMContentLoaded", () => {
-  fetchPokemon();
+  fetchPokemonFromLocalStorage();
 });
