@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 60%;
+  width: 80%;
 }
 
 .favoritedPokemon {

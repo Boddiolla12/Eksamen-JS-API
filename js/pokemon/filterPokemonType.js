@@ -26,7 +26,7 @@ filterPokemonByType = (type) => {
     }
 
     if (type === "all" || pokemonType.includes(type)) {
-      pokemonElement.style.display = "block";
+      pokemonElement.style.display = "flex";
       anyDisplayed = true;
     } else {
       pokemonElement.style.display = "none";
