@@ -33,21 +33,17 @@ filterPokemonByType = (type) => {
     }
   });
 
+  console.log(`Sorting by type: ${type}`);
   // If no elements are displayed, log an error message
   if (!anyDisplayed) {
     displayErrorMessage("No pokemon found for the selected type");
-    console.error("No Pokemon found for the selected type.");
   }
 };
 
-//Event listeneres for filter buttons
+//Event listeners for filter buttons
 document.querySelectorAll(".pokemonTypes").forEach((button) => {
   button.addEventListener("click", () => {
     const filterType = button.getAttribute("value");
     filterPokemonByType(filterType);
-    // check if any pokemon are displayed before logging sorting message
-    if (!anyDisplayed) {
-      console.log(`Sorting by type: ${filterType}`);
-    }
   });
 });

@@ -3,6 +3,7 @@ const logoutUser = () => {
   //remove authentication state
   localStorage.removeItem("loggedIn");
   localStorage.removeItem("_uuid");
+  localStorage.removeItem("favoritePokemonIds");
   // remove user's name display
   removeUsername();
 

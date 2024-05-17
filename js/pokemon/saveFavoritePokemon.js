@@ -30,13 +30,13 @@ const saveToFavorites = async (pokemonId) => {
 
     // Check if pokemonId already exists in favorites
     if (userData.favorites.includes(pokemonId)) {
-      console.log("Pokemon already exists in favorites");
+      console.log(`Pokemon ${pokemonId} already exists in favorites`);
       return;
     }
 
     //push new pokemonId into the favorites array
     userData.favorites.push(pokemonId);
-    console.log("PokemonId added to array", userData.favorites);
+    //console.log("PokemonId added to array", userData.favorites);
 
     //sorts the favorites array before its sent to server
     userData.favorites.sort((a, b) => a - b);
@@ -62,6 +62,25 @@ const saveToFavorites = async (pokemonId) => {
     if (!putResponse.ok) {
       throw new Error("Failed to save favorite pokemon");
     }
+
+    // Save pokemonId to the favoritePokemonIds array in localstorage if the id doesnt exist in the backend
+    let favoritePokemonIds =
+      JSON.parse(localStorage.getItem("favoritePokemonIds")) || [];
+    if (!favoritePokemonIds.includes(pokemonId)) {
+      favoritePokemonIds.push(pokemonId);
+
+      // Sort the array before storing it back in local storage
+      favoritePokemonIds.sort((a, b) => a - b);
+
+      localStorage.setItem(
+        "favoritePokemonIds",
+        JSON.stringify(favoritePokemonIds)
+      );
+      console.log(
+        `Pokemon ${pokemonId} added to favoritePokemonIds in local storage`
+      );
+    }
+
     //console.log(putResponse);
     console.log("Pokemon saved to favorites");
   } catch (error) {

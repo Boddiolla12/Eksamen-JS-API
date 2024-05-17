@@ -38,7 +38,7 @@ const registerUser = async (username, password) => {
     return;
   }
 
-  //If username doesnt exists, proceed with registration
+  //If username doesn't exists, proceed with registration
   const userData = [{ username: username, password: password, favorites: [] }];
 
   try {

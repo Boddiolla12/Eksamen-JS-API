@@ -20,7 +20,7 @@ const removeFavoritePokemon = async (pokemonId) => {
     }
 
     const userData = await getResponse.json();
-    console.log(userData);
+    //console.log(userData);
 
     //remove specified pokemonId from the favorites array
     const pokemonToRemoveIndex = userData.favorites.indexOf(pokemonId);
@@ -49,10 +49,23 @@ const removeFavoritePokemon = async (pokemonId) => {
     }
 
     // console.log(putResponse);
-    console.log("Pokemon removed from favorites");
 
     //update display after removing pokemon
     displayFavoritePokemon();
+
+    //remove pokemonID from localstorage array aswell
+    let favoritePokemonIds =
+      JSON.parse(localStorage.getItem("favoritePokemonIds")) || [];
+    const pokemonIndexInLocalStorage = favoritePokemonIds.indexOf(pokemonId);
+    if (pokemonIndexInLocalStorage !== -1) {
+      favoritePokemonIds.splice(pokemonIndexInLocalStorage, 1);
+      localStorage.setItem(
+        "favoritePokemonIds",
+        JSON.stringify(favoritePokemonIds)
+      );
+    }
+
+    console.log("Pokemon removed from favorites");
   } catch (error) {
     console.error("Error removing favorite pokemon", error);
   }

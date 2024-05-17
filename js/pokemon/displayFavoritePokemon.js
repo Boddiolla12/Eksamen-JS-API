@@ -1,4 +1,4 @@
-// Retrieve saved pokemon from local storage
+// Retrieve saved pokemon from backend
 const displayFavoritePokemon = async () => {
   try {
     //show spinner
@@ -47,28 +47,47 @@ const displayFavoritePokemon = async () => {
       "pokemon-container"
     );
 
-    //fetch pokemon data for each saved pokemon id and display them after they all have been fetched
-    const pokemonPromises = favoritePokemonIds.map(async (pokemonId) => {
-      try {
-        const getResponse = await fetch(
-          `https://pokeapi.co/api/v2/pokemon/${pokemonId}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+    //retrieve existing favoritePokemon IDs from local storage
+    let existingFavoritePokemonIds =
+      JSON.parse(localStorage.getItem("favoritePokemonIds")) || [];
 
-        if (!getResponse.ok) {
-          throw new Error(`Failed to fetch pokemon ${pokemonId}`);
-        }
-
-        return getResponse.json();
-      } catch (error) {
-        console.error("Error fetching or displaying pokemon data:", error);
+    //check if favorite pokemon IDs already exist in local storage, if not add them
+    favoritePokemonIds.forEach((pokemonId) => {
+      if (!existingFavoritePokemonIds.includes(pokemonId)) {
+        existingFavoritePokemonIds.push(pokemonId);
       }
     });
+
+    //Save updated favorite Pokemon IDS to local storage
+    localStorage.setItem(
+      "favoritePokemonIds",
+      JSON.stringify(existingFavoritePokemonIds)
+    );
+
+    //Fetch data for each saved pokemonID and display them after all have been fetched
+    const pokemonPromises = existingFavoritePokemonIds.map(
+      async (pokemonId) => {
+        try {
+          const getResponse = await fetch(
+            `https://pokeapi.co/api/v2/pokemon/${pokemonId}`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+
+          if (!getResponse.ok) {
+            throw new Error(`Failed to fetch pokemon ${pokemonId}`);
+          }
+
+          return getResponse.json();
+        } catch (error) {
+          console.error("Error fetching or displaying pokemon data:", error);
+        }
+      }
+    );
 
     //Wait for all pokemon data to be fetched
     const pokemonData = await Promise.all(pokemonPromises);
@@ -107,6 +126,16 @@ const displayFavoritePokemon = async () => {
       "Error displaying saved pokemon, user might not be logged in",
       error
     );
+  } finally {
+    hideSpinner();
+
+    //checks if user is not logged in and displays message
+    if (!localStorage.getItem("loggedIn")) {
+      const noUserLoggedInMessage = document.createElement("div");
+      noUserLoggedInMessage.textContent = "No user is logged in.";
+      noUserLoggedInMessage.classList.add("noUserLoggedInMessage");
+      document.body.appendChild(noUserLoggedInMessage);
+    }
   }
 };
 
