@@ -8,7 +8,7 @@ const checkUserName_passwordExists = async (username, password) => {
         Authorization: "Bearer " + crudApiKey,
       },
     });
-    //check if response is succesful (status code 200)
+    //check if response is successful (status code 200)
     if (!getResponse.ok) {
       throw new Error("Failed to check user credentials");
     }
@@ -19,7 +19,7 @@ const checkUserName_passwordExists = async (username, password) => {
     const users = userData.items;
 
     //log userData
-    console.log("Fetched UserData: ", users);
+    //console.log("Fetched UserData: ", users);
 
     //check if getResponse is an array
     if (!Array.isArray(users)) {
@@ -71,7 +71,9 @@ const loginUser = async (username, password) => {
       const userData = await getResponse.json();
 
       //extract _uuid from response
-      const uuid = userData.items.find((user) => user.username === username)?._uuid;
+      const uuid = userData.items.find(
+        (user) => user.username === username
+      )?._uuid;
 
       if (uuid) {
         //store -uuid in local storage
