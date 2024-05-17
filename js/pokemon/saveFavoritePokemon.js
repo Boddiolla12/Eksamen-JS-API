@@ -68,6 +68,10 @@ const saveToFavorites = async (pokemonId) => {
       JSON.parse(localStorage.getItem("favoritePokemonIds")) || [];
     if (!favoritePokemonIds.includes(pokemonId)) {
       favoritePokemonIds.push(pokemonId);
+
+      // Sort the array before storing it back in local storage
+      favoritePokemonIds.sort((a, b) => a - b);
+
       localStorage.setItem(
         "favoritePokemonIds",
         JSON.stringify(favoritePokemonIds)
