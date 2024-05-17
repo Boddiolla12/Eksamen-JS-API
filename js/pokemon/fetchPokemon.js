@@ -49,13 +49,18 @@ const fetchPokemonFromApi = async () => {
 // Fetch pokemonFromLocalStorage
 const fetchPokemonFromLocalStorage = async () => {
   try {
+    showSpinner();
     //check if pokemon data is available in local storage
     const storedPokemonData = localStorage.getItem("pokemonData");
     //initialize pokemonData variable
     if (storedPokemonData) {
       // if data available, parse and display
       pokemonData = JSON.parse(storedPokemonData);
-      displayPokemon(pokemonData);
+      // Introduce a slight delay before displaying to mimic fetch operation
+      setTimeout(() => {
+        displayPokemon(pokemonData);
+        hideSpinner(); // Hide spinner after displaying
+      }, 400);
     } else {
       // If data is not available in local storage, fetch it from api
       pokemonData = await fetchPokemonFromApi();
