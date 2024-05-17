@@ -20,7 +20,7 @@ const removeFavoritePokemon = async (pokemonId) => {
     }
 
     const userData = await getResponse.json();
-    console.log(userData);
+    //console.log(userData);
 
     //remove specified pokemonId from the favorites array
     const pokemonToRemoveIndex = userData.favorites.indexOf(pokemonId);
