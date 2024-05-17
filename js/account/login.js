@@ -8,7 +8,7 @@ const checkUserName_passwordExists = async (username, password) => {
         Authorization: "Bearer " + crudApiKey,
       },
     });
-    //check if response is successful (status code 200)
+    //check if response is successful
     if (!getResponse.ok) {
       throw new Error("Failed to check user credentials");
     }
