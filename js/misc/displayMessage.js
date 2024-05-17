@@ -6,7 +6,7 @@ const displayErrorMessage = (message) => {
   const errorMessageBox = document.createElement("div");
   errorMessageBox.textContent = message;
   errorMessageBox.classList.add("errorMessageBox");
-  console.log(message);
+  console.error(message);
   document.body.appendChild(errorMessageBox);
 
   setTimeout(() => {
