@@ -66,7 +66,7 @@ const fetchPokemonFromLocalStorage = async () => {
       setTimeout(() => {
         displayPokemon(pokemonData);
         hideSpinner(); // Hide spinner after displaying
-      }, 400);
+      }, 250);
     } else {
       // If data is not available in local storage, fetch it from api
       pokemonData = await fetchPokemonFromApi();
