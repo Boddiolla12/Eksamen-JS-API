@@ -4,7 +4,7 @@ const url = "https://crudapi.co.uk/api/v1/user_data";
 //CrudApitoken/link
 const crudApiKey = "Eb5KYt8dM3e2LyocFBBcIHdhbbHUWVQs6xl6TuRSWFAVSL6i1g";
 
-//function for manipulating elements displayvalue
+//function for manipulating elements display.value
 const toggleElementDisplay = (elementIds, displayValue) => {
   elementIds.forEach((elementId) => {
     document.getElementById(elementId).style.display = displayValue;
