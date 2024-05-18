@@ -1,11 +1,14 @@
 // displays users name after succesful login
 const displayUsername = (username) => {
+  //format the username before its saved and displayed
+  const formattedUsername = username.charAt(0).toUpperCase() + username.slice(1).toLowerCase();
+
   // store username in localstorage
-  localStorage.setItem("username", username);
+  localStorage.setItem("username", formattedUsername);
 
   //create div element to display username
   const userNameDiv = document.createElement("div");
-  userNameDiv.textContent = "Welcome, " + username;
+  userNameDiv.textContent = "Welcome, " + formattedUsername;
 
   userNameDiv.classList.add("user-name"); //add classname for styling purposes
 
