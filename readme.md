@@ -4,6 +4,8 @@
 
 - Oskar Gjelstad Rebård
 
+---
+
 ## Introduction
 
 - The intended usage of this application is for quickly browsing through the pokemons from mainly the first generation of pokemon.
@@ -22,11 +24,15 @@
 - Crudapi.co.uk is the backend this project is built with the Api endpoint: https://pokeapi.co/api/v2/pokemon. The endpoint consists of
 - basic pokemon data about individual pokemons. I have chosen to limit the pokemon fetched to gen1, which is the 151 first pokemons. If the user want, they can increase the amount fetched up to 1301 by editing the url in the fetchPokemon function, which is the maximum.
 
+---
+
 ### Trello
 
 - Trello has been used to keep a brief overview of what functionality to implement in the application, throughout the assignment.
--
+
 - https://trello.com/b/i6572IQF/eksamen-js-api
+
+---
 
 ## Inspiration origins
 
@@ -39,6 +45,8 @@
 - https://stackoverflow.com/questions/73305218/fetch-data-from-http-in-js-using-fetch
 
 - https://www.w3schools.com/js/js_object_constructors.asp
+
+---
 
 ## Image origins
 
