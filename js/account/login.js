@@ -1,6 +1,7 @@
 // function to check wether username + password exists, for login purposes
 const checkUserName_passwordExists = async (username, password) => {
   try {
+    //Fetch userdata
     const getResponse = await fetch(url, {
       method: "GET",
       headers: {
@@ -8,30 +9,30 @@ const checkUserName_passwordExists = async (username, password) => {
         Authorization: "Bearer " + crudApiKey,
       },
     });
-    //check if response is successful
+    // Error handling if response not succesful
     if (!getResponse.ok) {
       throw new Error("Failed to check user credentials");
     }
 
+    // Fetching userdata from the fetch request
     const userData = await getResponse.json();
 
     //parse JSON data from the response
     const users = userData.items;
-
-    //log userData
-    //console.log("Fetched UserData: ", users);
 
     //check if getResponse is an array
     if (!Array.isArray(users)) {
       throw new Error("UserData is not an array");
     }
 
-    // check if any user matches the provided username and password
+    // check if any user matches the provided username and password (converted to lowercase)
     const userExists = users.some(
       (user) => user.username.toLowerCase() === username.toLowerCase() && user.password === password
     );
 
+    //Return true if user exists
     return userExists;
+    // Error handling for try block
   } catch (error) {
     console.error("Error:", error);
 
@@ -45,7 +46,6 @@ const loginUser = async (username, password) => {
   try {
     //check if username and password combination matches
     const userExists = await checkUserName_passwordExists(username, password);
-    //console.log(userExists);
 
     //logs if authentication succesfull
     if (userExists) {
@@ -69,7 +69,6 @@ const loginUser = async (username, password) => {
       }
 
       const userData = await getResponse.json();
-      console.log(userData);
 
       //extract _uuid from response
       const uuid = (
@@ -83,8 +82,8 @@ const loginUser = async (username, password) => {
           {}
         ).favorites || [];
 
+      //If uuid found in backend, save to localstorage
       if (uuid) {
-        //store -uuid in local storage
         localStorage.setItem("_uuid", uuid);
 
         // check if favoritePokemonId's exist and save them to local storage
@@ -95,7 +94,7 @@ const loginUser = async (username, password) => {
 
         console.log("User id: ", uuid);
       }
-
+      // Show username on screen after succesful login
       displayUsername(username);
 
       //Functionality to hide loginform elements after succesful login
@@ -111,7 +110,6 @@ const loginUser = async (username, password) => {
 
       //hide register and login button, then  display logout button
       document.getElementById("accountForm").reset();
-      document.getElementById("username").focus();
       toggleElementDisplay(elementsToHide, "none");
       document.getElementById("logoutBtn").style.display = "block";
 
@@ -119,6 +117,7 @@ const loginUser = async (username, password) => {
     } else {
       showMessage("Invalid username or password");
     }
+    //Error handling
   } catch (error) {
     alert("Invalid username or password");
     console.error("Error", error);
