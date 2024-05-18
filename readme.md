@@ -53,7 +53,8 @@
 - https://manybackgrounds.com/background/blue-croconaw-pokemon-pwv8kigsela9lyxi.html
 
 - https://www.myfreetextures.com/
-- (https://www.myfreetextures.com/orange-seamless-wood-texture-background-image/?utm_content=cmp-true)
+
+- https://www.myfreetextures.com/orange-seamless-wood-texture-background-image/?utm_content=cmp-true
 
 ---
 
@@ -62,40 +63,50 @@
 - The application consists of 4 seperate html documents:
 
   1. Index.html = Home page, where the fetched pokemon is initally displayed.
+
   2. Favorites.html = Favorites page. If a user saves a pokemon to favorites it will be displayed here.
+
   3. Details.html = Details page, for extended information about a specific pokemon.
-
-  - The pokemons on these pages are displayed within cards. Which has two buttons for each element.
-
-    1. Home page
-
-       - Each pokemon has a favorite button, which saves the specific pokemon to local storage aswell as the server, to be displayed on on the favorites page.
-
-       - Each pokemon also has a details button, which takes the user to the details page, where extended data is displayed for the respective pokemon. Does not save anything to the server or to local storage.
-
-    2. Favorites page
-
-       - Each pokemon has a remove from favorites button, which removes the pokemon in question from local storage, then removes it from the backend. It also refreshes the display on favorites.html
-
-       - Each pokemon also has a details button, which takes the user directly to the details page, for the specific pokemon.
-
-    3. Details page
-
-       - Each pokemon has a favorite button, which saves data to local storage, then saves it to the backend.
-
-       - Each pokemon also has a "go back" button, which takes the user back to the page he/she came from initially, when the details button was clicked.
 
   4. Account.html = This is the user portal, where the user can register og log into his/her account.
 
-     - There are checks in place which validates if username already exists or wether the username or password is correct.
+---
 
-     - The username input is made not case sensitive, for userfriendliness. and to prevent creation of multiple users with the same name, but with different capitalization.
+## Page functionality
 
-     - The password IS case sensitive, so be careful what you type in. As there is no way to change your password without deleting your account!
+- The pokemons on these pages are displayed within cards. Which has two buttons for each element.
 
-     - When a user is created, the user is assigned a \_uuid which is your ID. Whenever you log in, this \_uuid is matched with its respective username, to validate that the right user is logged in, in relation to their respective favoritePokemonIds.
+---
 
-     - This functionality is what makes sure the page displays the correct favoritePokemon for your account.
+# Home page
+
+- Each pokemon has a favorite button, which saves the specific pokemon to local storage aswell as the server, to be displayed on on the favorites page.
+
+- Each pokemon also has a details button, which takes the user to the details page, where extended data is displayed for the respective pokemon. Does not save anything to the server or to local storage.
+
+# Favorites page
+
+- Each pokemon has a remove from favorites button, which removes the pokemon in question from local storage, then removes it from the backend. It also refreshes the display on favorites.html
+
+- Each pokemon also has a details button, which takes the user directly to the details page, for the specific pokemon.
+
+# Details page
+
+- Each pokemondetails has a favorite button, which saves data to local storage, then saves it to the backend.
+
+- Each pokemon also has a "go back" button, which takes the user back to the page he/she came from initially, when the details button was clicked.
+
+- There are checks in place which validates if username already exists or wether the username or password is correct.
+
+# Account page
+
+- The username input is made not case sensitive, for userfriendliness. and to prevent creation of multiple users with the same name, but with different capitalization.
+
+- The password IS case sensitive, so be careful what you type in. As there is no way to change your password without deleting your account!
+
+- When a user is created, the user is assigned a \_uuid which is your ID. Whenever you log in, this \_uuid is matched with its respective username, to validate that the right user is logged in, in relation to their respective favoritePokemonIds.
+
+- This functionality is what makes sure the page displays the correct favoritePokemon for your account.
 
 ## Sorting and filters
 
