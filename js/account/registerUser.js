@@ -1,6 +1,9 @@
 // checks if username exists, to be used by registerUser function
 const checkUserNameExists = async (username) => {
-  const url = `https://crudapi.co.uk/api/v1/user_data?username=${username}`;
+  //convert username to lowercase for consistency
+  const lowerCaseUsername = username.toLowerCase();
+
+  const url = `https://crudapi.co.uk/api/v1/user_data?username=${lowerCaseUsername}`;
 
   try {
     const getResponse = await fetch(url, {
@@ -17,11 +20,11 @@ const checkUserNameExists = async (username) => {
 
     const userData = await getResponse.json();
     //console.log("API Response:", getResponse); //check Api response for troubleshooting
-    console.log("Username:", username);
-    console.log("Existing user Data:", userData);
+    console.log("Username:", lowerCaseUsername);
+    //console.log("Existing user Data:", userData);
 
     //check if any user with the provided username exists
-    return userData.items.some((user) => user.username === username);
+    return userData.items.some((user) => user.username.toLowerCase() === lowerCaseUsername);
   } catch (error) {
     console.error("Error:", error);
     return false;
@@ -30,16 +33,19 @@ const checkUserNameExists = async (username) => {
 
 // function to register new user
 const registerUser = async (username, password) => {
+  //Convert username to lowercase
+  const lowerCaseUsername = username.toLowerCase();
+
   //check if username already exists
-  const usernameExists = await checkUserNameExists(username);
+  const usernameExists = await checkUserNameExists(lowerCaseUsername);
 
   if (usernameExists) {
-    alert("Username already exists. Please choose another one.");
+    showLoginMessage("Username already exists. Please choose another one.");
     return;
   }
 
   //If username doesn't exists, proceed with registration
-  const userData = [{ username: username, password: password, favorites: [] }];
+  const userData = [{ username: lowerCaseUsername, password: password, favorites: [] }];
 
   try {
     const postResponse = await fetch(url, {
@@ -55,7 +61,7 @@ const registerUser = async (username, password) => {
       throw new Error("Registration failed");
     }
 
-    alert("Registration successful.");
+    showLoginMessage("Registration successful.");
   } catch (error) {
     alert("Error registering user");
     console.error("Error:", error);

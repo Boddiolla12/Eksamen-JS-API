@@ -12,7 +12,7 @@ const displayPokemon = (pokemonData) => {
 
     pokemonElement.innerHTML = `
     <img src="${pokemon.image}" alt="${pokemon.name}">
-    <h2>${pokemon.name}</h2>
+    <h2>${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1).toLowerCase()}</h2>
     <p># ${pokemon.id}</p>
     <p>Type: ${pokemon.type}</p>
     <button onclick="saveToFavorites(${pokemon.id})">Favorite</button>

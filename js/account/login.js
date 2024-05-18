@@ -45,11 +45,11 @@ const loginUser = async (username, password) => {
   try {
     //check if username and password combination matches
     const userExists = await checkUserName_passwordExists(username, password);
-    console.log(userExists);
+    //console.log(userExists);
 
     //logs if authentication succesfull
     if (userExists) {
-      alert("Login successful.");
+      showLoginMessage("Login successful.");
       console.log("User logged in.");
 
       //Save authentication state
@@ -71,7 +71,9 @@ const loginUser = async (username, password) => {
       const userData = await getResponse.json();
 
       //extract _uuid from response
-      const uuid = userData.items.find((user) => user.username === username)?._uuid;
+      const uuid = userData.items.find(
+        (user) => user.username.toLowerCase() === username.toLowerCase()
+      )?._uuid;
 
       if (uuid) {
         //store -uuid in local storage

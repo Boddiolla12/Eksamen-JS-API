@@ -87,7 +87,7 @@ const displayFavoritePokemon = async () => {
       pokemonElement.classList.add("favoritedPokemon", "pokemonSort");
       pokemonElement.innerHTML = `
       <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-      <h2>${pokemon.name}</h2>
+      <h2>${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1).toLowerCase()}</h2>
       <p># ${pokemon.id}</p>
       <p>Type: ${pokemon.types.map((type) => type.type.name).join(", ")}</p>
       <button class="removeBtn" onclick="removeFavoritePokemon(${pokemon.id})">Remove</button>
@@ -101,16 +101,15 @@ const displayFavoritePokemon = async () => {
     //hide spinner after all pokemondata has been fetched and displayed
     hideSpinner();
   } catch (error) {
-    console.error("Error displaying saved pokemon, user might not be logged in", error);
+    console.log("Cannot load favorite pokemon, user is not logged in.");
   } finally {
     hideSpinner();
 
     //checks if user is not logged in and displays message
     if (!localStorage.getItem("loggedIn")) {
-      const noUserLoggedInMessage = document.createElement("div");
-      noUserLoggedInMessage.textContent = "No user is logged in.";
-      noUserLoggedInMessage.classList.add("noUserLoggedInMessage");
-      document.body.appendChild(noUserLoggedInMessage);
+      noUserLoggedInMessage(
+        "You are not logged into your account. Please log in to view your favorite pokemon"
+      );
     }
   }
 };
