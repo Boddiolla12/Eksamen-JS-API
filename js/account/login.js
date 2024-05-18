@@ -1,5 +1,7 @@
 // function to check wether username + password exists, for login purposes
 const checkUserName_passwordExists = async (username, password) => {
+  const lowerCaseUsername = username.toLowerCase();
+
   try {
     const getResponse = await fetch(url, {
       method: "GET",
@@ -71,7 +73,9 @@ const loginUser = async (username, password) => {
       const userData = await getResponse.json();
 
       //extract _uuid from response
-      const uuid = userData.items.find((user) => user.username === username)?._uuid;
+      const uuid = userData.items.find(
+        (user) => user.username.toLowerCase() === username.toLowerCase()
+      )?._uuid;
 
       if (uuid) {
         //store -uuid in local storage
