@@ -13,3 +13,13 @@ const displayErrorMessage = (message) => {
     errorMessageBox.remove();
   }, 1000);
 };
+
+const saveMessage = (message) => {
+  const saveMessageBox = document.createElement("div");
+  saveMessageBox.textContent = message;
+  saveMessageBox.classList.add("saveMessageBox");
+  document.body.appendChild(saveMessageBox);
+  setTimeout(() => {
+    saveMessageBox.remove();
+  }, 1000);
+};
