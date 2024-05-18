@@ -6,7 +6,7 @@ const displayPokemonDetails = async (pokemonId) => {
       throw new Error(`Failed to fetch details for pokemon ${pokemonId}`);
     }
     const pokemon = await getResponse.json();
-
+    console.log(pokemon.name);
     //create HTML elements for displaying details
     const detailsContainer = document.getElementById("pokemonDetails-container");
     detailsContainer.classList.add("pokemonDetails-container");
@@ -19,14 +19,24 @@ const displayPokemonDetails = async (pokemonId) => {
     <h2>${pokemon.name}</h2>
     <p># ${pokemon.id}</p>
     <p>Type: ${pokemon.types.map((type) => type.type.name).join(", ")}</p>
-    <p>Height: ${pokemon.height}</p>
-    <p>Weight: ${pokemon.weight}</p>
-    <h3>Abilities:</h3>
-    <ul>
-    ${pokemon.abilities.map((ability) => `<li>${ability.ability.name}</li>`).join("")}
-    </ul>
-    <button onclick="goBack()">Go Back</button>
-    
+  <p>Height: ${pokemon.height}</p>
+  <p>Weight: ${pokemon.weight}</p>
+  <h3>Abilities:</h3>
+  <ul>
+    ${pokemon.abilities.map((ability) => `<li>${ability.ability.name}</li>`)}
+  </ul>
+  <h3>Base Experience:</h3>
+  <p>${pokemon.base_experience}</p>
+  
+  <h3>Forms:</h3>
+  <ul>
+    ${pokemon.forms.map((form) => `<li>${form.name}</li>`)}
+  </ul>
+  <h3>Species:</h3>
+  <p>Name: ${pokemon.species.name}</p>
+  <p>URL: ${pokemon.species.url}</p>
+  <button onclick="saveToFavorites(${pokemon.id})">Favorite</button>
+  <button onclick="goBack()">Go Back</button>
     `;
 
     //Append pokemon element to the ul in the html doc
@@ -37,7 +47,7 @@ const displayPokemonDetails = async (pokemonId) => {
 };
 
 const goBack = () => {
-  window.location.href = "/";
+  window.history.back();
 };
 
 /*
