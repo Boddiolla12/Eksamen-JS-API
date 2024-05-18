@@ -1,19 +1,46 @@
 .pokemonDetails-container {
+  text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: white;
-  width: 18rem;
-  height: 30rem;
+  background-color: rgba(188, 191, 236, 0.845);
+  width: 20rem;
+  height: auto;
   margin: 10px;
   padding: 10px;
 }
 
 .pokemonDetails-container > li {
   display: flex;
+  align-items: center;
+}
+
+.pokemonDetails-container > li > img {
+  height: 10rem;
+  width: 10rem;
+}
+
+.pokemonDetails-container > li > button {
+  border: none;
+  width: 5rem;
+  height: 1.5rem;
+  background-color: rgba(171, 238, 71, 0.48);
+}
+
+.pokemonDetails-container > li > button:hover {
+  background-color: rgba(169, 245, 55, 0.794);
+  cursor: pointer;
+}
+
+.pokemonDetails {
+  display: flex;
   flex-direction: column;
-  justify-content: center;
-  background-color: white;
+
   margin: 10px;
+
   padding: 10px;
+}
+
+li > button {
+  margin: 0.2rem;
 }
