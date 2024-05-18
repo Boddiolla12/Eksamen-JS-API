@@ -25,6 +25,7 @@ const displayFavoritePokemon = async () => {
       console.log("Favorite Pokemon IDs:", favoritePokemonIds);
       console.log("Pokemon Id:", pokemonId);
 
+      // if pokemon data is found, create and display elements
       if (pokemon) {
         const pokemonElement = document.createElement("li");
         pokemonElement.classList.add("favoritedPokemon", "pokemonSort");

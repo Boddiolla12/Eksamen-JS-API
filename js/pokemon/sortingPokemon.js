@@ -12,7 +12,8 @@ const sortByNameAscending = () => {
       a.querySelector("h2").textContent.localeCompare(b.querySelector("h2").textContent)
     );
 
-    sortedPokemon.map((pokemonElement) => container.appendChild(pokemonElement));
+    //append sorted pokemonElements back to the container
+    sortedPokemon.forEach((pokemonElement) => container.appendChild(pokemonElement));
     isNameSortedAscending = true;
     console.log("Pokemon sorted by ascending Name");
   });
@@ -29,7 +30,7 @@ const sortByNameDescending = () => {
       b.querySelector("h2").textContent.localeCompare(a.querySelector("h2").textContent)
     );
 
-    sortedPokemon.map((pokemonElement) => container.appendChild(pokemonElement));
+    sortedPokemon.forEach((pokemonElement) => container.appendChild(pokemonElement));
     isNameSortedAscending = false;
     console.log("Pokemon sorted by descending Name");
   });
@@ -45,15 +46,13 @@ const sortByIdAscending = () => {
   pokemonContainers.forEach((container) => {
     const pokemonElements = Array.from(container.getElementsByClassName("pokemonSort"));
 
-    //ascending order
     const sortedPokemon = pokemonElements.sort((a, b) => {
       const idA = parseInt(a.querySelector("p").textContent.slice(2));
       const idB = parseInt(b.querySelector("p").textContent.slice(2));
       return idA - idB;
     });
 
-    //append sorted pokemonElements back to the container
-    sortedPokemon.map((pokemonElement) => container.appendChild(pokemonElement));
+    sortedPokemon.forEach((pokemonElement) => container.appendChild(pokemonElement));
     isIdSortedAscending = true;
     console.log("Pokemon sorted by ascending ID");
   });
@@ -66,15 +65,13 @@ const sortByIdDescending = () => {
   pokemonContainers.forEach((container) => {
     const pokemonElements = Array.from(container.getElementsByClassName("pokemonSort"));
 
-    //ascending order
     const sortedPokemon = pokemonElements.sort((a, b) => {
       const idA = parseInt(a.querySelector("p").textContent.slice(2));
       const idB = parseInt(b.querySelector("p").textContent.slice(2));
       return idB - idA;
     });
 
-    //append sorted pokemonElements back to the container
-    sortedPokemon.map((pokemonElement) => container.appendChild(pokemonElement));
+    sortedPokemon.forEach((pokemonElement) => container.appendChild(pokemonElement));
     isIdSortedAscending = false;
     console.log("Pokemon sorted by descending ID");
   });
@@ -96,7 +93,7 @@ const sortByTypeAscending = () => {
         .textContent.localeCompare(b.querySelector("p:nth-of-type(2)").textContent)
     );
 
-    sortedPokemon.map((pokemonElement) => container.appendChild(pokemonElement));
+    sortedPokemon.forEach((pokemonElement) => container.appendChild(pokemonElement));
     isTypeSortedAscending = true;
     console.log("Pokemon sorted by ascending Type");
   });
@@ -115,7 +112,7 @@ const sortByTypeDescending = () => {
         .textContent.localeCompare(a.querySelector("p:nth-of-type(2)").textContent)
     );
 
-    sortedPokemon.map((pokemonElement) => container.appendChild(pokemonElement));
+    sortedPokemon.forEach((pokemonElement) => container.appendChild(pokemonElement));
     isTypeSortedAscending = false;
     console.log("Pokemon sorted by descending Type");
   });

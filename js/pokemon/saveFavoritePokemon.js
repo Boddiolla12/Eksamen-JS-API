@@ -13,7 +13,6 @@ const saveToFavorites = async (pokemonId) => {
     if (favoritePokemonIds.includes(pokemonId)) {
       showMessage("Pokemon is already favorited");
       console.log(`Pokemon ${pokemonId} already exists in favorites`);
-
       return;
     }
 
@@ -30,7 +29,7 @@ const saveToFavorites = async (pokemonId) => {
       favorites: favoritePokemonIds,
     };
 
-    //
+    //fetch to update backend data
     const putResponse = await fetch(url + `/${userId}`, {
       method: "PUT",
       headers: {
@@ -43,7 +42,7 @@ const saveToFavorites = async (pokemonId) => {
     if (!putResponse.ok) {
       throw new Error("Failed to save favorite pokemon");
     }
-
+    //console logs which pokemon id is saved
     console.log(`Pokemon ${pokemonId} saved to favorites`);
   } catch (error) {
     console.error("Error saving favorite pokemon", error);

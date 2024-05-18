@@ -10,6 +10,7 @@ const displayPokemon = (pokemonData) => {
     const pokemonElement = document.createElement("li");
     pokemonElement.classList.add("pokemon", "pokemonSort");
 
+    // Set inner html of pokeelement with details and buttons
     pokemonElement.innerHTML = `
     <img src="${pokemon.image}" alt="${pokemon.name}">
     <h2>${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1).toLowerCase()}</h2>

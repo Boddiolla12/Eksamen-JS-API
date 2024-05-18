@@ -4,7 +4,7 @@ window.addEventListener("load", () => {
     //hide spinner
     setTimeout(() => {
       hideSpinner();
-      // show logout button
+      // show logout and delete account buttons
       document.getElementById("logoutBtn").style.display = "block";
       document.getElementById("deleteBtn").style.display = "block";
     }, 250);

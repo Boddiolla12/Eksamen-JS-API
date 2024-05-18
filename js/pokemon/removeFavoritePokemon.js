@@ -1,3 +1,4 @@
+// Function to remove pokemon
 const removeFavoritePokemon = async (pokemonId) => {
   try {
     //Remove pokemonID from local storage
@@ -36,8 +37,6 @@ const removeFavoritePokemon = async (pokemonId) => {
     if (!putResponse.ok) {
       throw new Error("Failed to remove favorite pokemon");
     }
-
-    //console.log(putResponse);
 
     console.log("Pokemon removed from favorites");
   } catch (error) {
