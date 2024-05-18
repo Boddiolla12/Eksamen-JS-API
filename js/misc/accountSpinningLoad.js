@@ -7,7 +7,7 @@ window.addEventListener("load", () => {
       // show logout button
       document.getElementById("logoutBtn").style.display = "block";
       document.getElementById("deleteBtn").style.display = "block";
-    }, 300);
+    }, 250);
 
     // Hide login form elements
     const elementsToHide = [

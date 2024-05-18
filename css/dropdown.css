@@ -1,3 +1,8 @@
+.dropdownWrapper {
+  position: fixed;
+  top: 6.2rem;
+}
+
 .dropdown {
   position: relative;
   display: inline-block;

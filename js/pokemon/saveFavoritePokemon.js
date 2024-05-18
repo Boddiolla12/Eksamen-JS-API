@@ -8,46 +8,26 @@ const saveToFavorites = async (pokemonId) => {
       return;
     }
 
-    //Fetch current userData
-    const getResponse = await fetch(url + `/${userId}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + crudApiKey,
-      },
-    });
-
-    if (!getResponse.ok) {
-      throw new Error("Failed to fetch user data");
-    }
-
-    const userData = await getResponse.json();
-    //console.log(userData);
-
-    if (!userData) {
-      throw new Error("User data not found");
-    }
-
     // Check if pokemonId already exists in favorites
-    if (userData.favorites.includes(pokemonId)) {
+    const favoritePokemonIds = JSON.parse(localStorage.getItem("favoritePokemonIds")) || [];
+    if (favoritePokemonIds.includes(pokemonId)) {
+      showMessage("Pokemon is already favorited");
       console.log(`Pokemon ${pokemonId} already exists in favorites`);
-      showMessage("Pokemon is already saved to favorites");
+
       return;
     }
 
-    //push new pokemonId into the favorites array
-    userData.favorites.push(pokemonId);
-    //console.log("PokemonId added to array", userData.favorites);
+    favoritePokemonIds.push(pokemonId);
+    // Sort the array before storing it back in local storage
+    favoritePokemonIds.sort((a, b) => a - b);
 
-    //sorts the favorites array before its sent to server
-    userData.favorites.sort((a, b) => a - b);
-
-    //console logs userData after push and sort
-    //console.log(userData);
+    localStorage.setItem("favoritePokemonIds", JSON.stringify(favoritePokemonIds));
+    showMessage("Pokemon added to favorites");
+    console.log(`Pokemon ${pokemonId} added to favoritePokemonIds in local storage`);
 
     // Construct data object to be sent in PUT request
     const dataToUpdate = {
-      favorites: userData.favorites,
+      favorites: favoritePokemonIds,
     };
 
     //
@@ -64,21 +44,7 @@ const saveToFavorites = async (pokemonId) => {
       throw new Error("Failed to save favorite pokemon");
     }
 
-    // Save pokemonId to the favoritePokemonIds array in localstorage if the id doesnt exist in the backend
-    let favoritePokemonIds = JSON.parse(localStorage.getItem("favoritePokemonIds")) || [];
-    if (!favoritePokemonIds.includes(pokemonId)) {
-      favoritePokemonIds.push(pokemonId);
-
-      // Sort the array before storing it back in local storage
-      favoritePokemonIds.sort((a, b) => a - b);
-
-      localStorage.setItem("favoritePokemonIds", JSON.stringify(favoritePokemonIds));
-      console.log(`Pokemon ${pokemonId} added to favoritePokemonIds in local storage`);
-    }
-
-    //console.log(putResponse);
-    console.log("Pokemon saved to favorites");
-    showMessage("Pokemon saved to favorites");
+    console.log(`Pokemon ${pokemonId} saved to favorites`);
   } catch (error) {
     console.error("Error saving favorite pokemon", error);
   }

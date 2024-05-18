@@ -39,5 +39,5 @@ h1 {
 }
 
 .spinner {
-  top: 12rem;
+  display: none;
 }

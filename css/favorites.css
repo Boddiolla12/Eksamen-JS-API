@@ -1,11 +1,9 @@
 h1 {
   color: white;
-  margin-bottom: 2rem;
 }
 
 .favoritePokemon-container {
   position: relative;
-  top: 2rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -52,8 +50,4 @@ h1 {
 
 .detailsBtn:hover {
   background-color: rgba(169, 245, 55, 0.794);
-}
-
-.spinner {
-  top: 12rem;
 }

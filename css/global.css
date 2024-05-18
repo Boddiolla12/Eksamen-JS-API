@@ -11,11 +11,12 @@ body {
 }
 
 main {
+  top: 10rem;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
 }
 nav {
   background-color: #333;
@@ -50,4 +51,8 @@ nav a {
 nav a:hover {
   background-color: #ddddddbb;
   color: black;
+}
+
+.spinner {
+  z-index: 40;
 }
