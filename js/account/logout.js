@@ -4,9 +4,10 @@ const logoutUser = () => {
   localStorage.removeItem("loggedIn");
   localStorage.removeItem("_uuid");
   localStorage.removeItem("favoritePokemonIds");
-  // remove user's name display
+  // remove user's name display from UI
   removeUsername();
 
+  //Define elements to toggle their display
   const elementsToToggle = [
     "username",
     "usernameLabel",

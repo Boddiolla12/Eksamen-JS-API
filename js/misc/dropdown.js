@@ -1,3 +1,4 @@
+// Functionto toggle dropdownmenu
 function toggleDropdown(id) {
   var dropdown = document.getElementById(id);
   if (dropdown.style.display === "block") {

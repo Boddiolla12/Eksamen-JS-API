@@ -10,7 +10,8 @@ const displayUsername = (username) => {
   const userNameDiv = document.createElement("div");
   userNameDiv.textContent = "Welcome, " + formattedUsername;
 
-  userNameDiv.classList.add("user-name"); //add classname for styling purposes
+  //add classname for styling purposes
+  userNameDiv.classList.add("user-name");
 
   //append div to container element in html
   const userNameContainer = document.getElementById("username-container");

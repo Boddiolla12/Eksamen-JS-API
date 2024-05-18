@@ -8,7 +8,6 @@ const fetchPokemonFromApi = async () => {
     const baseUrl = "https://pokeapi.co/api/v2/pokemon?limit=151";
 
     //fetch data for each pokemon
-
     const getResponse = await fetch(baseUrl, {
       method: "GET",
       headers: {
