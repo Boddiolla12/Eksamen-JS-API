@@ -87,7 +87,7 @@ const displayFavoritePokemon = async () => {
       pokemonElement.classList.add("favoritedPokemon", "pokemonSort");
       pokemonElement.innerHTML = `
       <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-      <h2>${pokemon.name}</h2>
+      <h2>${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1).toLowerCase()}</h2>
       <p># ${pokemon.id}</p>
       <p>Type: ${pokemon.types.map((type) => type.type.name).join(", ")}</p>
       <button class="removeBtn" onclick="removeFavoritePokemon(${pokemon.id})">Remove</button>
