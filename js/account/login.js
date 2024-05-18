@@ -28,7 +28,7 @@ const checkUserName_passwordExists = async (username, password) => {
 
     // check if any user matches the provided username and password
     const userExists = users.some(
-      (user) => user.username === username && user.password === password
+      (user) => user.username.toLowerCase() === username.toLowerCase() && user.password === password
     );
 
     return userExists;
@@ -71,9 +71,7 @@ const loginUser = async (username, password) => {
       const userData = await getResponse.json();
 
       //extract _uuid from response
-      const uuid = userData.items.find(
-        (user) => user.username === username
-      )?._uuid;
+      const uuid = userData.items.find((user) => user.username === username)?._uuid;
 
       if (uuid) {
         //store -uuid in local storage
