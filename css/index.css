@@ -17,7 +17,7 @@ h1 {
 
 .pokemon {
   background-color: rgba(188, 191, 236, 0.845);
-  height: 15rem;
+  height: 20rem;
   width: 15rem;
   display: flex;
   flex-direction: column;
@@ -39,5 +39,5 @@ h1 {
 }
 
 .spinner {
-  top: 5rem;
+  top: 12rem;
 }
