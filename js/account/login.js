@@ -55,7 +55,7 @@ const loginUser = async (username, password) => {
       //Save authentication state
       saveAuthState();
 
-      //fetch user data to get "_uuid"
+      //fetch user data to get "_uuid" and favorite Pokemon ID's
       const getResponse = await fetch(url, {
         method: "GET",
         headers: {
@@ -69,15 +69,30 @@ const loginUser = async (username, password) => {
       }
 
       const userData = await getResponse.json();
+      console.log(userData);
 
       //extract _uuid from response
-      const uuid = userData.items.find(
-        (user) => user.username.toLowerCase() === username.toLowerCase()
-      )?._uuid;
+      const uuid = (
+        userData.items.find((user) => user.username.toLowerCase() === username.toLowerCase()) || {}
+      )._uuid;
+
+      //Extract favoritePokemonIds from response
+      const favoritePokemonIds =
+        (
+          userData.items.find((user) => user.username.toLowerCase() === username.toLowerCase()) ||
+          {}
+        ).favorites || [];
 
       if (uuid) {
         //store -uuid in local storage
         localStorage.setItem("_uuid", uuid);
+
+        // check if favoritePokemonId's exist and save them to local storage
+        if (favoritePokemonIds && Array.isArray(favoritePokemonIds)) {
+          localStorage.setItem("favoritePokemonIds", JSON.stringify(favoritePokemonIds));
+          console.log("Favorite pokemon IDs:", favoritePokemonIds);
+        }
+
         console.log("User id: ", uuid);
       }
 
