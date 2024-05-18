@@ -21,7 +21,7 @@ const checkUserNameExists = async (username) => {
     const userData = await getResponse.json();
     //console.log("API Response:", getResponse); //check Api response for troubleshooting
     console.log("Username:", lowerCaseUsername);
-    console.log("Existing user Data:", userData);
+    //console.log("Existing user Data:", userData);
 
     //check if any user with the provided username exists
     return userData.items.some((user) => user.username.toLowerCase() === lowerCaseUsername);
@@ -40,7 +40,7 @@ const registerUser = async (username, password) => {
   const usernameExists = await checkUserNameExists(lowerCaseUsername);
 
   if (usernameExists) {
-    alert("Username already exists. Please choose another one.");
+    showLoginMessage("Username already exists. Please choose another one.");
     return;
   }
 
@@ -61,7 +61,7 @@ const registerUser = async (username, password) => {
       throw new Error("Registration failed");
     }
 
-    alert("Registration successful.");
+    showLoginMessage("Registration successful.");
   } catch (error) {
     alert("Error registering user");
     console.error("Error:", error);

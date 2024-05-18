@@ -31,7 +31,7 @@ const saveToFavorites = async (pokemonId) => {
     // Check if pokemonId already exists in favorites
     if (userData.favorites.includes(pokemonId)) {
       console.log(`Pokemon ${pokemonId} already exists in favorites`);
-      saveMessage("Pokemon is already saved to favorites");
+      showMessage("Pokemon is already saved to favorites");
       return;
     }
 
@@ -78,7 +78,7 @@ const saveToFavorites = async (pokemonId) => {
 
     //console.log(putResponse);
     console.log("Pokemon saved to favorites");
-    saveMessage("Pokemon saved to favorites");
+    showMessage("Pokemon saved to favorites");
   } catch (error) {
     console.error("Error saving favorite pokemon", error);
   }

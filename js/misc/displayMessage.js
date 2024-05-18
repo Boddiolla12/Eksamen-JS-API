@@ -1,7 +1,3 @@
-const displaySavedToFavoritesMessage = (message) => {
-  console.log(message);
-};
-
 const displayErrorMessage = (message) => {
   const errorMessageBox = document.createElement("div");
   errorMessageBox.textContent = message;
@@ -14,7 +10,17 @@ const displayErrorMessage = (message) => {
   }, 1000);
 };
 
-const saveMessage = (message) => {
+const showLoginMessage = (message) => {
+  const loginMessageBox = document.createElement("div");
+  loginMessageBox.textContent = message;
+  loginMessageBox.classList.add("loginMessageBox");
+  document.body.appendChild(loginMessageBox);
+  setTimeout(() => {
+    loginMessageBox.remove();
+  }, 1000);
+};
+
+const showMessage = (message) => {
   const saveMessageBox = document.createElement("div");
   saveMessageBox.textContent = message;
   saveMessageBox.classList.add("saveMessageBox");
@@ -22,4 +28,11 @@ const saveMessage = (message) => {
   setTimeout(() => {
     saveMessageBox.remove();
   }, 1000);
+};
+
+const noUserLoggedInMessage = (message) => {
+  const noUserLoggedInMessage = document.createElement("div");
+  noUserLoggedInMessage.textContent = message;
+  noUserLoggedInMessage.classList.add("noUserLoggedInMessage");
+  document.body.appendChild(noUserLoggedInMessage);
 };

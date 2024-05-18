@@ -1,5 +1,11 @@
+main {
+  position: relative;
+  top: 4rem;
+}
+
 h1 {
   color: white;
+  top: 30px;
 }
 
 .user-name {
@@ -75,5 +81,19 @@ h1 {
 }
 
 .spinner {
-  top: 12rem;
+  top: 4.5rem;
+}
+
+.loginMessageBox {
+  position: absolute;
+  top: 7rem;
+  left: 50%;
+  transform: translatex(-50%);
+  text-align: center;
+  background-color: rgba(75, 77, 105, 0.845);
+  height: auto;
+  width: auto;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
 }

@@ -45,11 +45,11 @@ const loginUser = async (username, password) => {
   try {
     //check if username and password combination matches
     const userExists = await checkUserName_passwordExists(username, password);
-    console.log(userExists);
+    //console.log(userExists);
 
     //logs if authentication succesfull
     if (userExists) {
-      alert("Login successful.");
+      showLoginMessage("Login successful.");
       console.log("User logged in.");
 
       //Save authentication state

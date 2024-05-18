@@ -101,16 +101,15 @@ const displayFavoritePokemon = async () => {
     //hide spinner after all pokemondata has been fetched and displayed
     hideSpinner();
   } catch (error) {
-    console.error("Error displaying saved pokemon, user might not be logged in", error);
+    console.log("Cannot load favorite pokemon, user is not logged in.");
   } finally {
     hideSpinner();
 
     //checks if user is not logged in and displays message
     if (!localStorage.getItem("loggedIn")) {
-      const noUserLoggedInMessage = document.createElement("div");
-      noUserLoggedInMessage.textContent = "No user is logged in.";
-      noUserLoggedInMessage.classList.add("noUserLoggedInMessage");
-      document.body.appendChild(noUserLoggedInMessage);
+      noUserLoggedInMessage(
+        "You are not logged into your account. Please log in to view your favorite pokemon"
+      );
     }
   }
 };
