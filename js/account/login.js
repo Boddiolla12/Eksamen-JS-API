@@ -117,7 +117,7 @@ const loginUser = async (username, password) => {
 
       document.getElementById("deleteBtn").style.display = "block";
     } else {
-      alert("Invalid username or password");
+      showMessage("Invalid username or password");
     }
   } catch (error) {
     alert("Invalid username or password");

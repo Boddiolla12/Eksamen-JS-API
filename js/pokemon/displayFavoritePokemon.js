@@ -43,9 +43,7 @@ const displayFavoritePokemon = async () => {
     }
 
     //hide spinner after all pokemondata has been fetched and displayed
-    setTimeout(() => {
-      hideSpinner(); // Hide spinner after displaying
-    }, 250);
+    hideSpinner();
   } catch (error) {
     console.error("Cannot load favorite pokemon:", error);
   } finally {
